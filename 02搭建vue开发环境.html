@@ -1,11 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<!-- 引入vue -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
 <body>
-    
+    <div id="app">
+        {{ message }}
+    </div>
+    <!-- 下载一个扩展插件 Vue.devtools -->
+    <script type="text/javascript">
+        Vue.config.productionTip = false;    //  以阻止 vue 在启动时生成生产提示。
+        Vue.config.performance = true
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: '我是啊敏敏'
+            }
+        })
+    </script>
 </body>
+
 </html>
