@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    作用：基于数据循环，多次渲染整个元素 =>数组、对象、数字
+    遍历数组语法：v-for="(item,index) in 数组"； item每一项，index下标
+    <br>
+    <div id="app">
+        <h3>水果店</h3>
+        <ul>
+            <li v-for="(item,index) in list">
+                {{ item }} - {{ index }}
+            </li>
+        </ul>
+        <ul>
+            <li v-for="item in list">
+                {{ item }} 
+            </li>
+        </ul>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                list : ['西瓜','苹果','蓝莓','香蕉']
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    v-for里面的key
+    语法： :key属性="唯一标识"
+    作用：给列表项添加的 唯一标识。便于Vue进行列表项的正确排序复用
+    为什么要加key？因为v-for的默认行为会尝试 原地修改元素 （就地复用）
+    <div id="app">
+        <h4>图书馆</h4>
+        <ul>
+            <li v-for="(item, index) in bookList" :key="item.id">
+                <span>{{item.name}}</span>
+                <span>{{item.author}}</span>
+                <!-- 注册点击事件 -> 通过id进行删除数组中的对应项 -->
+                <button @click="del(item.id)">删除</button>
+            </li>
+        </ul>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                bookList: [
+                    { id: 1, name: '《黄钟飞》', author: '张敏' },
+                    { id: 2, name: '《黄钟飞是笨蛋》', author: '张敏' },
+                    { id: 3, name: '《黄钟飞是傻蛋》', author: '张敏' },
+                    { id: 4, name: '《黄钟飞是傻狗》', author: '张敏' }
+                ]
+            },
+            methods: {
+                del(id) {
+                    console.log(id)
+                    // 通过id进行删除数组中的对应项 -> filter(不会改变原数组)
+                    // filter：根据条件，保留满足条件的对应项，得到一个新数组
+                    console.log(this.bookList.filter(item => item.id !== id))
+
+                    this.bookList = this.bookList.filter(item => item.id !== id)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
