@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    vue核心特性：响应式 - 数据改变，视图自动更新
+    比如：数据的响应式处理 ->  响应式： 数据更新，视图自动更新
+    <br>
+    如何访问或者修改data中的数据？
+    data中的数据，会被添加到实例上 ； 访问：实例.属性名 ；修改：实例.属性名 = 值
+    <div id="app">
+        {{ msg }}
+        {{ count }}
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                // 响应式数据 => 数据变化了,视图自动更新
+                msg: '你好，笨蛋黄',
+                count: 18000
+            }
+        })
+        // data中的数据，会被添加到实例上
+        // 1.访问：实例.属性名 
+        // 2.修改：实例.属性名 = 值
+        console.log(app.msg)
+        console.log(app.msg = '你好，小张')
+        
+    </script>
+</body>
+</html>

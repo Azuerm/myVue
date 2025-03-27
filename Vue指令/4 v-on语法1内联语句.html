@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    
+    </style>
+</head>
+
+<body>
+    作用：注册事件 = 添加监听 + 提供处理逻辑
+    语法： 1. v-on:事件名='内联语句'
+        2. v-on:事件名='methods中的函数名'
+    简写：@事件名=''
+    <br>
+    1. v-on:事件名='内联语句' -- 可执行的代码
+    <br>
+    v-on: 可以使用 @ 替换
+    <div id="app">
+        <button @click="count--">-</button>
+        <span>{{ count }}</span>
+        <button v-on:click="count++">+</button>
+        <!-- <button v-on:click="count = count +  2">+</button> -->
+        <!-- 1.注册事件，2.修改数据 -->
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                count: 100
+            }
+        })
+    </script>
+</body>
+
+</html>

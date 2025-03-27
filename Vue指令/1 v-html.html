@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Vue会根据不同的 指令， 针对标签实现不同的 功能
+    指令：带有 v-前缀 的特殊 标签属性
+    <br>
+    v-html: 
+    作用：动态设置元素的innerHTML
+    语法：v-html = "表达式"
+    <br>
+    什么是vue指令？ 指令就是带有v-前缀的特殊的属性，不同的属性 对应 不同的功能
+    如果需要动态解析标签，可以用哪个标签？v-html = "表达式"，动态设置元素的innerHTML
+    <div id="app">
+       <!-- <div>{{ msg }}</div> -->
+        <div v-html=" msg "></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                // msg: `<a href="https://www.mi.com/about/index.html">小米</a>`
+                msg: `<h3>黄笨蛋<h3>`
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    vue的模版语法
+    作用：利用表达式(可以被求值的代码)进行插值，渲染到页面
+    语法： {{ 表达式 }}
+    1.使用数据必须存在
+    2.支持表达式，而不是语句if、for
+    3.标签属性中不能使用{{}}插值
+    <!-- <p title="{{uersname}}"></p> 错 -->
+     <br>
+    <div id="app">
+        <p>{{ nickname }}</p>
+        <p>{{ nickname.toUpperCase() }}</p>
+        <p>{{ nickname + '你好呀' }}</p>
+        <p>{{ age >= 18 ? '已成年' : '未成年' }}</p>
+        <p>{{ friend.name + friend.desc}}</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                nickname: 'andy',
+                age: 18,
+                friend: {
+                    name: 'john',
+                    desc: '热爱学习 vue'
+                }
+            }
+        })
+    </script>
+</body>
+</html>

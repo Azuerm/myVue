@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    作用：动态的设置html的标签属性 => src、title、url
+    语法： v-bind:属性名="表达式"
+    简写：将v-bind省略掉 :属性名="表达式"
+    <br>
+    <div id="app">
+        <!-- <img v-bind:src="imgUrl" v-bind:title="msg" alt=""> -->
+        <img :src="imgUrl" :title="msg" alt="">
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data: {
+                imgUrl: './imgs/11-05.png',
+                msg: 'hello 波仔'
+            }
+        })
+    </script>
+</body>
+</html>

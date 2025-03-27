@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    
+    </style>
+</head>
+
+<body>
+    作用：注册事件 = 添加监听 + 提供处理逻辑
+    语法： 1. v-on:事件名='内联语句'
+        2. v-on:事件名='methods中的函数名'
+    <br>
+    v-on:事件名='methods中的函数名'
+    注意：methods函数内的this指向Vue实例
+    <div id="app">
+        <button @click="fn">切换显示隐藏</button>
+        <h1 v-show="isShow">你好呀，笨蛋啊黄</h1>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                // 提供数据
+                // count: 100
+                isShow: true
+            },
+            methods: {
+                // 提供处理逻辑的函数
+                fn() {
+                    // 让提供的所有methods中的函数，this都指向当前实例
+                    console.log('执行了fn',this.isShow)
+                    // console.log(app === this) true
+                    this.isShow = !this.isShow
+                    
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

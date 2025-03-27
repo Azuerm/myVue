@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box1">
+        box1 --- {{msg}}
+        <!-- 不会被渲染，el没有指向它 -->
+    </div>
+    <div id="box2">
+        box2 --- {{count}}
+    </div>
+
+    <!-- 1.准备一个容器（vue管理的范围） -->
+    <div id="app">
+        <h1>{{ msg }}</h1>
+        <h2>{{ count }}</h2>
+    </div>
+    <!-- 2.引包 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        // 一旦引入vuejs核心包，在全局环境，就有了vue构造函数
+        // 3.创建vue实例 new Vue()
+        // 4.指定配置项 - 渲染数据
+        const app = new Vue({
+            el: '#app', // 通过el配置选择器，指定vue管理的是哪个容器
+            data: {
+                msg: 'hello 你好',   //通过data提供数据
+                count: '你好呀'
+            }
+        })
+    </script>
+</body>
+
+</html>
