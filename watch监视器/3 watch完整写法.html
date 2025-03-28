@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    2.完整写法 -> 添加额外配置项
+    (1) deep: true 对复杂类型深度监视 （对对象里面的所有属性都做监视）
+    (2) immediate：true 初始化立即执行一次handler方法
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                words:'苹果',
+                obj: {
+                    words:'苹果',
+                    lang: 'english'
+                }
+            },
+            // watch 和 data 并列
+            watch: {
+                数据属性名: {
+                    deep:true, //深度监视
+                    handler (newValue) {
+                        console.log(newValue)
+                        
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

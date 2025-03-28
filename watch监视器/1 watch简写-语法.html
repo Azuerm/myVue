@@ -1,14 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     watch侦听器（监视器）
     作用： 监视数据变化 ，执行一些业务逻辑或者异步操作
     语法： 1.简单写法 -> 简单类型数据，直接监视
-        2.完整写法 -> 添加额外配置项
+    2.完整写法 -> 添加额外配置项
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                words:'苹果',
+                obj: {
+                    words:'苹果'
+                }
+            },
+            // watch 和 data 并列
+            watch: {
+                // 该方法会在数据变化时，触发执行
+                数据属性名 (newValue, oldValue) {
+                    执行一些业务逻辑或者异步操作
+                },
+                '对象.属性名' (newValue, oldValue) {
+                    执行一些业务逻辑或者异步操作
+                }
+            }
+        })
+    </script>
 </body>
+
 </html>
