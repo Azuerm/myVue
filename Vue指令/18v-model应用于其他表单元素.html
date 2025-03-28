@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    常见的表单元素都可以用v-model绑定关联 -> 快速获取 或设置 表单元素的值
+    它会根据 控件类型 自动选取 正确的方法 来更新元素
+    <div id="app">
+        <h3>学习网</h3>
+        姓名：<input type="text" name="" id="" v-model="username"> <br><br>
+        是否单身： <input type="checkbox" name="" id="" v-model="isSingle"> <br><br>
+        
+        性别：
+        <!-- 用单选框，1 要给单选框添加name属性可以分组，实现同组互斥；2 添加value属性，提交给后台的数据 -->
+            <input v-model="gender" type="radio" name="gender" value="1"> 男
+            <input v-model="gender" type="radio" name="gender" value="2"> 女 <br><br>
+        <!-- 通过checked获得值 -->
+        所在城市：
+            <!-- 用下拉选框： 1.option 需要设置value值提交给后台 ; 2. select 的 value值，关联了 选中的option 的value值-->
+            <select  v-model="cityId">
+                <option value="101">北京</option>
+                <option value="102">广州</option>
+                <option value="103">上海</option>
+                <option value="104">云南</option>
+            </select>
+            <br> <br>
+        自我描述：
+            <textarea v-model="desc"></textarea>
+        <button>立即注册</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                username:'',
+                isSingle: '',
+                gender: '1',
+                cityId: '104',
+                desc:''
+            }
+        })
+    </script>
+</body>
+
+</html>

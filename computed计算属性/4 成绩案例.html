@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            border: 2px solid #000;
+            width: 500px;
+            margin: 100px auto;
+            border-collapse: collapse;
+            line-height: 2em;
+            text-align: center;
+        }
+        th {
+            background-color: rgb(217, 211, 211);
+        }
+        th,td {
+            border: 1px solid #000;
+        }
+        p {
+            text-align: center;
+        }
+        td span {
+            margin: 0 10px;
+        }
+        .red {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <table>
+            <tr>
+                <th>编号</th>
+                <th>科目</th>
+                <th>成绩</th>
+                <th>操作</th>
+            </tr>
+            <tr v-for="(item, index) in list" :key="item.id">
+                <td>{{ index + 1}}</td>
+                <td>{{ item.name }}</td>
+                <td :class="{ red : item.score < 60}">{{ item.score }}</td>
+                <td><a href="javascript:;" @click="del(item.id)">删除</a></td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <span>总分：{{ sum }}</span>
+                    <span>平均分: {{ average }}</span>
+                </td>
+            </tr>
+        </table>
+        <p>科目： <input type="text"  v-model="subject" placeholder="请输入科目"></p>
+        <p>分数： <input type="text" v-model.number="grade" placeholder="请输入分数"></p>
+        <p><button @click="add()">添加</button></p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                list: [
+                    {id:1, name: '语文', score: 46},
+                    {id:2, name: '数学', score: 80},
+                    {id:3, name: '英语', score: 79},
+                    {id:4, name: '地理', score: 100}
+                ],
+                subject:'',
+                grade: ''
+            },
+            computed: {
+                sum() {
+                    const all = this.list.reduce( (pre,current) => pre + current.score , 0)
+                    return all
+                },
+                average() {
+                    const all = this.list.reduce( (pre,current) => pre + current.score , 0)
+                    const length = this.list.length
+                    return all / length ? all / length : 0
+                }
+            },
+            methods: {
+                del(index) {
+                    this.list = this.list.filter( item => item.id !== index)
+                    
+                },
+                add() {
+                    this.list.push({
+                        id: +new Date(),
+                        name: this.subject,
+                        score: this.grade
+                    })
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

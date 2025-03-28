@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box1 {
+            width: 300px;
+            height: 300px;
+            background-color: pink;
+            margin: 10px;
+        }
+        .box2 {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background-color: skyblue;
+        }
+    </style>
+</head>
+<body>
+    通过 . 指明一些指令后缀，不同后缀封装了不同的处理操作 -> 简化代码
+    <br>
+    按键修饰符:@keyup.enter -> 键盘回车监听
+    v-model修饰符:
+        v-model.trim -> 去除首尾空格 v-model.number  -> 转数字
+    事件修饰符： @事件名.stop -> 阻止冒泡
+        @事件名.prevent -> 阻止默认行为
+    <br>
+    <br><br>
+    <div id="app">
+        <h2>@keyup.enter -> 键盘回车监听</h2>
+        <input type="text" v-model="username" @keyup.enter="fn">
+        <h2>v-model修饰符</h2>
+        姓名：<input type="text" v-model.trim="usern">   <br>
+        年纪<input type="age" v-model.number="age">
+        <h2>@事件名.stop -> 阻止冒泡</h2>
+            <div class="box1" @click="fatherFn">
+                <div class="box2" @click.stop="sonFn">儿子</div>
+            </div>
+        <h2> @事件名.prevent -> 阻止默认行为</h2>
+        <a @click.prevent href="https://www.baidu.com/"> 阻止默认行为</a>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                username: '',
+                usern: '',
+                age: ''
+            },
+            methods: {
+                fn(e) {
+                    // if (e.key === 'Enter') {
+                    //      console.log('键盘回车时触发' + this.username)
+                    // }
+                    console.log('键盘回车时触发' + this.username)
+                    
+                },
+                fatherFn() {
+                    alert('爸爸')
+                },
+                sonFn(e) {
+                    // e.stopPropagation()
+                    alert('儿子')
+                },
+            }
+    
+        })
+        
+    </script>
+</body>
+</html>

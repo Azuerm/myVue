@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .boxm {
+            width: 150px;
+            height: 150px;
+            border: 2px solid black;
+            margin: 10px;
+        }
+        .pink {
+            background-color: pink;
+        }
+        .big {
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    v-bind对于样式控制的增强，可以针对class类名和style行内式进行控制
+    <br>
+    操作class
+    语法： :class="对象/数组"
+    <br>
+    1 对象 -> 键就是类名，值是布尔值。如果值为true就有这个类，false就没有
+    适用于：一个类名来回切换
+    <div class="box" :class="{ 类名1: 布尔值, 类名2: 布尔值}"></div>
+    <br>
+    2 数组 -> 数组中所有的类，都会添加到盒子上，本质就是一个class列表
+    适用于：批量添加或删除类
+    <div class="box" :class="[ '类名1', '类名2', '类名3']"></div>
+    <div id="app">
+        <div class="boxm"  :class="{ pink: true, big:fasle }">系哦啊中</div>
+        <div class="boxm"  :class="[ 'pink' , 'big']">系哦啊中</div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+
+            }
+        })
+    </script>
+</body>
+</html>

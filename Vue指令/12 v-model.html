@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     作用：给表单元素使用，双向数据绑定 -> 可以快速 获取 或 设置 表单元素内容
     <br>
@@ -24,15 +26,15 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script>
         const app = new Vue({
-            el:'#app',
+            el: '#app',
             data: {
-                username:'',
-                password:''
+                username: '',
+                password: ''
             },
             methods: {
                 login() {
                     console.log(this.username, this.password)
-                    
+
                 },
                 reset() {
                     this.username = ''
@@ -42,4 +44,5 @@
         })
     </script>
 </body>
+
 </html>

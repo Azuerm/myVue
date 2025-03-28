@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{
+            border: 1px solid #000;
+            text-align: center;
+            width: 240px;
+        }
+        th,td {
+            border: 1px solid #000;
+        }
+        h3 {
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    计算属性：基于现有的数据，计算出来的新属性。依赖的数据变化，自动重新计算
+    语法：
+    1. 声明在computed配置项中，一个计算属性 对应一个函数
+    2. 使用起来和普通属性一样 {{ 计算属性名 }}
+    <br>
+    <div id="app">
+        <h3>礼物清单</h3>
+        <table>
+            <tr>
+                <th>名字</th>
+                <th>数量</th>
+            </tr>
+            <tr v-for="(item,index) in list">
+                <td>{{item.name}}</td>
+                <td>{{item.num}}</td>
+            </tr>
+        </table>
+        <p>礼物总数：{{ totalCount }}个</p>
+        <!-- 计算属性 本质上是一个属性，不能加() -->
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                list: [
+                    { id: 1, name: '篮球', num: 1 },
+                    { id: 2, name: '玩具', num: 2 },
+                    { id: 3, name: '铅笔', num: 10 },
+                ]
+            },
+            // computed和data并列
+            computed: {
+                // 计算属性名() {
+                //     基于现有数据，编写求值逻辑
+                //     return 结果
+                // }
+                totalCount () {
+                    // 计算属性函数内部，可以直接通过 this 访问到app实例
+                    // console.log(this.list)
+
+                    // 需求: 对this.list数组里面的num进行求和 -> reduce
+                    let total = this.list.reduce( (sum, item) => sum + item.num , 0)
+                    return total
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

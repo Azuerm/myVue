@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    computed计算属性 VS methods方法
+    <br>
+    computed计算属性：
+    作用：封装了一段对于数据的处理，求得一个结果
+    语法：1.写到computed配置项中
+            2.作为属性，直接使用 => this.计算属性  {{ 计算属性 }}
+    
+    缓存特性(提升性能): 计算属性会对计算出来的结果缓存，再次使用直接读取缓存； 依赖项变化量，会自动重新计算 => 并再次缓存
+    <br>
+    methods方法：
+    作用：给实例提供一个方法，调用处理业务逻辑
+    语法：1.写到methods配置项中
+            2.作为方法，需要调用 => this.方法名() {{ 方法名() }}
+</body>
+</html>

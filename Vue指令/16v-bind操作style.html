@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .boxm {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    语法： :style="样式对象"
+    <div class="box" :style="{ css属性名1: 'css属性值' , css属性名2: 'css属性值'}"></div>
+    适用于：某个具体属性的动态设置
+    <br>
+    <div id="app">
+        <!-- <div class="boxm" :style="{ width: '400px' , 'background-color': 'skyblue'}"></div> -->
+        <div class="boxm" :style="{ width: '400px' , backgroundColor: 'skyblue'}"></div>
+        <!-- 驼峰 -->
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+
+            }
+        })
+    </script>
+</body>
+</html>
