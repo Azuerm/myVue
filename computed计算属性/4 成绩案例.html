@@ -14,18 +14,24 @@
             line-height: 2em;
             text-align: center;
         }
+
         th {
             background-color: rgb(217, 211, 211);
         }
-        th,td {
+
+        th,
+        td {
             border: 1px solid #000;
         }
+
         p {
             text-align: center;
         }
+
         td span {
             margin: 0 10px;
         }
+
         .red {
             color: red;
         }
@@ -54,7 +60,7 @@
                 </td>
             </tr>
         </table>
-        <p>科目： <input type="text"  v-model="subject" placeholder="请输入科目"></p>
+        <p>科目： <input type="text" v-model="subject" placeholder="请输入科目"></p>
         <p>分数： <input type="text" v-model.number="grade" placeholder="请输入分数"></p>
         <p><button @click="add()">添加</button></p>
     </div>
@@ -64,29 +70,29 @@
             el: '#app',
             data: {
                 list: [
-                    {id:1, name: '语文', score: 46},
-                    {id:2, name: '数学', score: 80},
-                    {id:3, name: '英语', score: 79},
-                    {id:4, name: '地理', score: 100}
+                    { id: 1, name: '语文', score: 46 },
+                    { id: 2, name: '数学', score: 80 },
+                    { id: 3, name: '英语', score: 79 },
+                    { id: 4, name: '地理', score: 100 }
                 ],
-                subject:'',
+                subject: '',
                 grade: ''
             },
             computed: {
                 sum() {
-                    const all = this.list.reduce( (pre,current) => pre + current.score , 0)
+                    const all = this.list.reduce((pre, current) => pre + current.score, 0)
                     return all
                 },
                 average() {
-                    const all = this.list.reduce( (pre,current) => pre + current.score , 0)
+                    const all = this.list.reduce((pre, current) => pre + current.score, 0)
                     const length = this.list.length
                     return all / length ? all / length : 0
                 }
             },
             methods: {
                 del(index) {
-                    this.list = this.list.filter( item => item.id !== index)
-                    
+                    this.list = this.list.filter(item => item.id !== index)
+
                 },
                 add() {
                     this.list.push({
