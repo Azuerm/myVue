@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    普通组件的注册使用
+    1.局部注册： 只能在注册的组件内使用
+    （1）在conponents里面创建 .vue 文件(三部分组成)
+    （2） 在使用的组件内导入并注册
+    <script>
+        // 导入需要注册的文件
+        // import 组件对象 from 'vue路径'
+        import MyHeader from './components/MyHeader.vue'
+        import MyMain from './components/MyMain.vue'
+        import MyFoot from './components/MyFoot.vue'
+        export default {
+            // 局部注册
+            components: {
+                // '组件名': '组件对象'
+                MyHeader: MyHeader,
+                MyMain,
+                MyFoot
+            }
+        }
+    </script>
+
+    （3）使用：当html标签使用 '<组件名>
+        <组件名>'
+            <MyHeader></MyHeader>
+            <!-- 主体组件 -->
+            <MyMain></MyMain>
+            <!-- 底部组件 -->
+            <MyFoot></MyFoot>
+            <br>
+            注意：组件名规范：大驼峰命名法
+</body>
+
+</html>
