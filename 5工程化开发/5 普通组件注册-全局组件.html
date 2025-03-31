@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    进行全局注册 -> 在所有的组件范围内都能直接使用
+    全局注册：所有组件内都能使用
+    1.在components 创建.vue文件
+    2.在main.js中进行全局注册
+    <!-- 编写导入的代码，往代码的顶部编写(规范) -->
+    import MyButton from './components/MyButton'
+    <!-- 进行全局注册 -> 在所有的组件范围内都能直接使用 -->
+    Vue.component('组件名',组件对象)
+    Vue.component('MyButton',MyButton)
+
+    3.使用：当html标签使用 '<组件名>
+        <组件名>'
+</body>
+
+</html>

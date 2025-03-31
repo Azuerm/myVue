@@ -1,6 +1,7 @@
 <template>
     <div class="foot">
       我是foot
+      <MyButton></MyButton>
     </div>
 </template>
   

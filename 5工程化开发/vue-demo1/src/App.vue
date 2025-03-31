@@ -17,7 +17,7 @@ import MyHeader from './components/MyHeader.vue'
 import MyMain from './components/MyMain.vue'
 import MyFoot from './components/MyFoot.vue'
 export default {
-    // 局部注册
+    // 局部注册:注册的组件只能在当前的组件范围内使用
     components: {
         // '组件名': '组件对象'
         MyHeader: MyHeader,

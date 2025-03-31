@@ -1,6 +1,7 @@
 <template>
   <div class="header">
     我是header
+    <MyButton></MyButton>
   </div>
 </template>
 
