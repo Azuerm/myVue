@@ -1,20 +1,27 @@
 <template>
     <div id="app">
-        <BaseProgress :w="width"></BaseProgress>
+        <BaseCount @changeCount="handleChange"  :count="count" 
+        ></BaseCount>
     </div>
 </template>
 
 <script>
-import BaseProgress from './components/BaseProgress.vue'
+import BaseCount from './components/BaseCount.vue'
 export default {
     data() {
         return {
-            width: 100
+            count: 100
         }
     },
+    methods:{
+       handleChange(newCount) {
+            console.log(newCount)  
+            this.count = newCount 
+       }
+    },
     components: {
-        BaseProgress
-    }
+        BaseCount
+    },
 }
 </script>
 
