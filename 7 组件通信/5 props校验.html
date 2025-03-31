@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    props校验：为组件的prop指定验证要求，不符合要求，控制台就会有错误提示 -> 帮助开发者，快速发现错误
+    语法:
+    1.类型校验
+    props: {
+        校验的属性名：类型 // Number 、String 、Boolean、Array、Object、Function\
+        
+        w: Number
+    }
+    2.非空校验
+    3.默认值
+    4.自定义校验
+    props: {
+        校验属性名: {
+            type: 类型,
+            require: true,  //是否必填
+            default: 默认值,  
+            validator (value) {
+                // 自定义校验逻辑
+                return 是否通过校验
+            }
+        }
+    }
+</body>
+</html>

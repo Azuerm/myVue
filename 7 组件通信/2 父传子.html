@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    父组件通过props将数据传递给子组件
+    <br>
+    1.通过给子组件标签，添加属性的方式，传值
+    <OneSon :title="myTitle"></OneSon>、
+    <br>
+    2.子组件 - 通过props进行接受
+    export default {
+        // 2.通过props进行接受
+        props: ['title']
+    
+    }
+    <br>
+    3.渲染使用
+    {{ title }}
+</body>
+</html>

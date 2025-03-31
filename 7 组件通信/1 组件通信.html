@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    组件通信：组件与组件之间的数据传递
+    组件的数据是独立的，无法直接访问其他组件的数据。想用其他组件的数据 -> 组件通信方案
+    <br>
+    组件关系分类：
+    1.父子关系
+    2.非父子关系
+    <br>
+    组件通信方案：
+    1.父子关系：props 和 $emit修改
+    2.非父子关系：(1)provide & inject (2) eventbus
+    通用解决方案： Vuex （适合复杂业务场景）
+</body>
+</html>

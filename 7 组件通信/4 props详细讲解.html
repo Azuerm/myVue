@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    prop定义：组件上 注册的一些 自定义属性
+    作用：向子组件传递数据
+    特点：可以传递 任意数量、任意类型的prop
+    <br>
+    <UserInfo :username="username" :age="age" :isSingle="isSingle" :car="car" :hobby="hobby"></UserInfo>
+    <script>
+        export default {
+            props: ['username','age','isSingle','car','hobby']
+        }
+    </script>
+</body>
+</html>
