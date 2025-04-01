@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    非父子通信- event bus 事件总线
+    作用：非父子组件之间，进行简易消息传递（复杂-> Vuex）
+    1.创建一个都能访问到的事件总线(空vue实例) -> utils/EventBus.js
+    import Vue from 'vue'
+    const Bus = new Vue()
+    export default Bus
+    2.A组件-接收方，监听Bus实例的事件
+    import Bus from '../utils/EventBus'
+    export default {
+        created() {
+            // 2.在A组件接收方，进行箭头Bus的事件（订阅消息）
+            Bus.$on('sendMsg', (msg) => {
+                // console.log(msg)
+                this.msg = msg
+                
+            })
+        },
+        data() {
+            return {
+                msg:''
+            }
+        }
+    }
+    3.B组件-发送方，触发Bus实例的事件
+    <button @click="clickSend"></button>
+    import Bus from '@/utils/EventBus'
+    export default {
+        methods: {
+            clickSend() {
+                // 3.B组件发送方，触发事件的方式传递参数（发布消息）
+                Bus.$emit('sendMsg', '今日晴天，适合交流')
+            }
+        }
+    }
+    <br>
+    非父子通信-provide&inject
+    作用：跨层级共享数据
+    1.父组件provide提供数据
+    export default {
+        // 1.父组件provide提供数据
+        provide() {
+            return {
+                color: this.color,
+                userInfo: this.userInfo
+            }
+        },
+        data () {
+            return {
+                color:'pink',   // 简单类型 - 非响应式
+                userInfo: {  // 复杂类型-响应式-推荐
+                    name:' 小黑',
+                    age:18
+                }
+            }
+        }
+    }
+    2.子/孙组件inject取值使用
+    export default {
+        // 2.子/孙组件inject取值使用
+        inject: ['color','userInfo']
+    }
+</body>
+
+</html>
