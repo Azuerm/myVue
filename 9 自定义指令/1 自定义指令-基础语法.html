@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    自定义指令：自己定义的指令，可以封装一些dom操作，扩展额外功能
+    全局注册：
+    Vue.directive('指令名', {
+        <!--  inserted 会在 指令所在的元素，被插入到页面中时触发 -->
+        "inserted" (el) {
+            <!-- 可以对el标签，扩展额外功能 -->
+            <!--  el 就是指令所绑定的元素 -->
+            el.focus()
+        }
+    })
+    局部注册：
+    directive: {
+        // 指令名： 配置项
+        "指令名": {
+            inserted() {
+                el.focus()
+            }
+        }
+    }
+    使用：
+    <input v-指令名 type="text">
+</body>
+</html>

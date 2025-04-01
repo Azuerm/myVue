@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    ref 和 $refs
+    作用：利用ref 和 $refs可以用于获得dom元素，或组件实例
+    特点：查找范围 -> 当前组件内 （更精确稳定）
+    <!-- querySelector查找范围 -> 整个页面 -->
+    1.获得dom：
+    (1)目标标签-添加ref属性
+    <div ref="chartRef">我是渲染图标的容器</div>
+    (2)恰当时机，通过 this.$refs.xxx 获得目标标签
+    mounted() {
+        console.log(this.$refs.chartRef)
+    }
+</body>
+</html>

@@ -6,6 +6,23 @@
     <title>Document</title>
 </head>
 <body>
-    
-</body>
+    .sync 修饰符
+    作用：可以实现子组件与父子件数据的双向绑定，简化代码
+    特点：prop属性名，可以自定义，非固定为value
+    场景：封装弹框类的基础组件，visible属性 true显示 false隐藏
+    本质：就是 :属性名 和 @update:属性名 合写
+    <br>
+    父组件：
+    <BaseDialog :visible.sync="isShow"></BaseDialog>
+    子组件：
+    export default {
+        props: {
+            visible: Boolean
+        },
+        methods: {
+            close() {
+                this.$emit('update:visible',false)
+            }
+        }
+      }
 </html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    vue异步更新、$nextTick
+    需求：点击编辑框，显示编辑框 ； 让编辑框，立即获取焦点（无法立即获取）
+    原因：vue是异步 更新dom (提高性能)
+
+    $nextTick:等DOM更新后，才会触发执行此方法里的函数体
+    语法: this.$nextTick(函数体)
+</body>
+</html>

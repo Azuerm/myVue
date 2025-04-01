@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    2.获得组件：
+    （1）目标组件-添加ref属性
+    <BaseFrom5 ref="baseFrom"></BaseFrom5>
+    <button @click="handleGet">获取数据</button>
+    <button @click="handleReset">重置数据</button>
+    （2）恰当时机，通过 this.$refs.xxx ,获得目标组件，就可以调用组件对象里面的方法
+    this.$refs.baseFrom.组件方法()
+    子组件： methods: {
+        // 方法1：收集表单元素，返回一个对象
+        getValues() {
+            return {
+                account : this.account,
+                password: this.password
+            }
+        },
+        // 方法2：重置
+        resultValue() {
+            this.account = ''
+            this.password = ''
+        }
+      }
+    父组件：
+    export default {
+        methods: {
+            handleGet() {
+                console.log(this.$refs.baseFrom.getValues())
+                
+            },
+            handleReset() {
+                this.$refs.baseFrom.resultValue()
+            }
+        },
+        components: {
+            BaseFrom5
+        }
+      }
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    自定义指令：v-loading指令封装
+    场景：实际开发过程中，发送请求需要时间，在请求的数据未回来时，页面会处于空白状态=>用户体验不好
+    需求：封装一个v-loading指令，实现加载中的效果
+    <br>
+    实现：
+    1.准备一个loading类，通过伪元素定位，设置宽高，实现蒙层
+    2.开启关闭loading状态-添加移除蒙层，本质只需要添加移除类即可
+    4.结合自定义指令的语法进行封装
+</body>
+
+</html>

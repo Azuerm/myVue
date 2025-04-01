@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    需求：实现一个color指令-传入不同的颜色，给标签设置文字颜色
+    语法：在绑定指令时，可以通过 "等号" 的形式为指令 绑定 具体的参数值
+    <div v-color="color">我是内容</div>
+    通过 binding.value 可以拿到指令值，指令值修改会触发 update函数
+
+    <h1 v-color="color1">指令的值1测试</h1>
+    <h1 v-color="color2">指令的值2测试</h1>
+    <script>
+        export default {
+            data() {
+                return {
+                    color1: 'red',
+                    color2: 'pink'
+                }
+            },
+            directives: {
+                color: {
+                    // 1.inserted 提供的是元素被添加到页面中时的逻辑
+                    inserted(el, binding) {
+                        console.log(el, binding.value)
+                        // binding.value 就是我们指令的值
+                        el.style.color = binding.value
+                    },
+                    // 2.update 指令的值修改的时候触发，提供值变化后，dom更新的逻辑
+                    update(el, binding) {
+                        console.log('指令的值被修改了')
+                        el.style.color = binding.value
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
