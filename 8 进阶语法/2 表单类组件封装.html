@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    表单类组件封装 和 v-model简化代码
+    1.表单类组件 封装
+    （1）父传子： 数据 应该是父组件props传递过来的，v-model 拆解绑定数据
+    <select :value="cityId" @change="handelChange"> 
+    （2）子传父：监听输入，子传父 传值给父组件修改
+    methods: {
+        handelChange(e) {
+            console.log(e.target.value)
+            this.$emit('changeId', e.target.value)
+        }
+    }
+    @changeId="selectId = $event"
+</body>
+</html>
