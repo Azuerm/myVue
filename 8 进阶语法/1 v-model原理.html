@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    v-model原理：v-modle本质上是一个语法糖（语法简洁写法）
+    例如应用在输入框，v-model就是 value属性 和 input事件 的合写
+    （复选框： checked属性 和 change事件的和谐）
+    <input v-model="msg" type="text">
+    <input :value="msg" @input="msg=$event.target.value" type="text">
+    作用：提供数据的双向绑定
+    1.数据变，视图跟着变：value，
+    2.视图变，数据跟着变：@input
+    注意：$event用于在模版中，获取事件的形参
+</body>
+</html>
