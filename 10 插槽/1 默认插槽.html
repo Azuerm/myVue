@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    插槽：
+    作用：让组件内部的一些 结构 支持 自定义
+    <br>
+    场景：当组件内某一部分结构不确定，想要自定义
+    <br>
+    需求：要在页面显示一个对话框，封装一个组件；组件的内容不希望写死，希望使用的时候自定义？
+    <br>
+    基本语法：
+    1.组件内需要定制的结构部分，改用 <slot></slot>占位
+    2.使用组件时，<MyDialog></MyDialog>标签内部，传入结构 替换slot
+    1.
+    <div class="dialog-content">
+        <!-- 1.在需要定制的位置，使用slot站位 -->
+        <slot></slot>
+    </div>
+    2.
+    <!-- 2.在使用组件时，在组件标签内填入内容 -->
+    <MyDialog>你确认要删除吗</MyDialog>
+    <MyDialog>你确认要退出吗</MyDialog>
+</body>
+
+</html>
