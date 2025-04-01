@@ -17,18 +17,23 @@
         const app = new Vue({
             el: '#app',
             data: {
-                words:'苹果',
+                words: '苹果',
                 obj: {
-                    words:'苹果'
+                    words: '苹果'
                 }
             },
             // watch 和 data 并列
+            // watch和computed区别
+            // 1.computed 是计算属性，依赖其他属性，并且computed具有缓存功能，只有依赖的数据发生改变，才会重新进行计算
+            // 2.watch 是侦听器，依赖其他属性，但是没有缓存功能，只要依赖的数据发生改变，就会立即触发回调函数的执行
+            // 3.如果某个属性，在后续的计算中，没有被其他属性所依赖，那么可以使用computed
+            // 4.如果某个属性，在后续的计算中，被其他属性所依赖，那么可以使用watch
             watch: {
                 // 该方法会在数据变化时，触发执行
-                数据属性名 (newValue, oldValue) {
+                数据属性名(newValue, oldValue) {
                     执行一些业务逻辑或者异步操作
                 },
-                '对象.属性名' (newValue, oldValue) {
+                '对象.属性名'(newValue, oldValue) {
                     执行一些业务逻辑或者异步操作
                 }
             }
