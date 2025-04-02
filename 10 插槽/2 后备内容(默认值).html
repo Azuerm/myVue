@@ -6,6 +6,12 @@
     <title>Document</title>
 </head>
 <body>
-    
+    插槽后备内容：封装组件时，可以为预留的 <slot></slot>插槽提供后备内容（默认内容）
+    <br>
+    语法：在<slot></slot>标签内，放置内容，作为默认显示内容
+    效果：外部使用组件时，不传东西，则slot会显示后备内容
+    <MyDialog></MyDialog>
+    外部使用组件式，传东西了，则slot整体会被换掉
+    <MyDialog>你确认要退出吗</MyDialog>
 </body>
 </html>

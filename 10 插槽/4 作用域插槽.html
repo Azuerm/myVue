@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>插槽分类： 默认插槽（组件内定制一处结构）； 具名插槽（组件内定制多处结构）
+        <br>
+        作用域插槽：是插槽的一个传参语法
+    </h1>
+    作用域插槽：定义slot插槽的同时，是可以传值的。给插槽 上可以 绑定数据，将来使用组件时可以用。
+    场景：封装表格组件； 1.父传子，动态渲染表格内容。2.利用默认插槽，定制操作项。3删除或查看都需要用到 当前项的id，属于组件内部的数据。通过 作用域插槽 传值绑定，进而使用
+    <br>
+    基本使用步骤：
+    1.给slot标签，以添加属性的方法传值
+    2.所以添加的属性，都会被收集到一个对象中
+    <td>
+        <!-- 1.给slot标签以添加属性的方式传值 -->
+        <slot :row="item" msg="测试文本"></slot>
+        <!-- 2.会将所有的属性添加到一个对象中 -->
+        <!--  {
+            row: {id:1,name:'张小',age:18},
+            msg: '测试文本'
+
+         } -->
+      </td>
+    3.在template中，通过 #具名插槽名="obj" 接收，默认插槽名为 #default="obj"
+    <MyTable :data="list">
+        <!-- 3.通过template #插槽名="变量名" 接收 -->
+        <template #default="obj">
+            <button @click="del(obj.row.id)">删除</button>
+        </template>
+    </MyTable>
+    <MyTable :data="list2">
+        <template #default="{row}">
+            <!-- 直接解构 -->
+            <button @click="show(row)">查看</button>
+        </template>
+    </MyTable>
+</body>
+</html>

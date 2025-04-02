@@ -7,7 +7,11 @@
   
       <div class="dialog-content">
         <!-- 1.在需要定制的位置，使用slot站位 -->
-         <slot></slot>
+
+        <!-- 往slot标签内部，编写内容，可以作为后备内容（默认值） -->
+         <slot>
+            我是默认的文本内容
+         </slot>
       </div>
       <div class="dialog-footer">
         <button>取消</button>

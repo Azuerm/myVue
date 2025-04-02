@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    需求：一个组件内有多处结构，需要外部传入标签，进行定制；
+    默认插槽：一个定制位置
+    <br>
+    语法：
+    1.多个slot使用 name属性 区分名字
+    <div class="dialog">
+        <div class="dialog-header">
+            <!-- 一旦插槽取了名字，就是具名插槽，只支持定向分发 -->
+            <slot name="head"></slot>
+        </div>
+        <div class="dialog-content">
+            <slot name="content"></slot>
+        </div>
+        <div class="dialog-footer">
+            <slot name="footer"></slot>
+        </div>
+    </div>
+    2.template配合 v-slot:名字 来分发对应标签
+    3.v-slot:插槽名 可以简化为 #插槽名
+    <MyDialog>
+        <!-- 需要template标签 包裹需要分发的结构，包成一个整体 -->
+        <template v-slot:head>
+            <div>我是大标题</div>
+        </template>
+        <template v-slot:content>
+            <div>我是内容</div>
+        </template>
+        <template #footer>
+            <button>确定</button>
+            <button>取消</button>
+        </template>
+    </MyDialog>
+</body>
+
+</html>
