@@ -1,22 +1,39 @@
 <template>
     <div class="table-case">
-        <MyTable :data="goods"></MyTable>
+        <MyTable :data="goods">
+            <template #head>
+                <th>编号</th>
+                <th>名称</th>
+                <th>图片</th>
+                <th width="100px">标签</th>
+            </template>
+            <template #body="{item,index}">
+                <td>{{ index + 1 }}</td>
+                <td>{{ item.name }}</td>
+                <td>
+                    <img :src="item.picture" />
+                </td>
+                <td>
+                    <MyTag v-model="item.tag"></MyTag>
+                </td>
+            </template>
+        </MyTable>
     </div>
 </template>
 
 <script>
-// import MyTag from './components/MyTag.vue';
+import MyTag from './components/MyTag.vue';
 import MyTable from './components/MyTable.vue';
 export default {
     name: 'TableCase',
     components: {
-        // MyTag,
+        MyTag,
         MyTable
     },
     data() {
         return {
             // 测试组件功能的临时数据
-            tempText:'水杯',
+            tempText: '水杯',
             tempText2: '钢笔',
             goods: [
                 {
@@ -66,7 +83,7 @@ export default {
         vertical-align: middle;
     }
 
-    
+
 
 }
 </style>

@@ -2,23 +2,12 @@
     <table class="my-table">
         <thead>
             <tr>
-                <th>编号</th>
-                <th>名称</th>
-                <th>图片</th>
-                <th width="100px">标签</th>
+                <slot name="head"></slot>
             </tr>
         </thead>
         <tbody>
             <tr v-for="(item,index) in data" :key="item.id">
-                <td>{{ index + 1 }}</td>
-                <td>{{ item.name }}</td>
-                <td>
-                    <img :src="item.picture" />
-                </td>
-                <td>
-                    标签组件
-                    <!-- <MyTag v-model="tempText"></MyTag> -->
-                </td>
+               <slot name="body" :item="item" :index="index"></slot>
             </tr>
         </tbody>
     </table>
