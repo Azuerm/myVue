@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>vue2 3 3； vue3 4 4
+    作用：修改地址栏路径时，切换显示匹配的组件
+    <br>
+    VueRouter 的使用(5 + 2) #/
+    <h2>五个基础步骤(固定) 在main.js </h2>
+    1.下载 VueRouter 到当前工程，版本3.6.5
+    yarn add vue-router@3.6.5
+    2.引入
+    import VueRouter from 'vue-router'
+    3.安装注册 vue.use
+    Vue.use(VueRouter)
+    4.创建路由对象
+    const router = new VueRouter()
+    5.注入，将路由对象 注入到 newVue 实例中
+    new Vue({
+        render: h => h(App),
+        router: router
+      }).$mount('#app')
+    <br>
+    <h2>2个核心步骤</h2>
+    1.在views目录，创建需要的组件，并配置路由规则
+    views => Find.vue My.vue Friend.vue
+    在 main.js 配置路由规则
+    import Find from './views/Find.vue'
+    import My from './views/My.vue'
+    import Friend from './views/Friend.vue'
+    const router = new VueRouter({
+        // routes 路由规则们
+        // route 一条路由规则 {path: 路径, component: 组件}
+        routes: [
+            {path: '/find', component: Find},
+            {path: '/my', component: My},
+            {path: '/friend', component: Friend}
+        ]
+    }) 
+    2. 准备导航链接，配置路由出口router-view（组件显示的位置）
+    在App.vue准备导航链接，要和main.js里面的路径名一样
+    <div class="footer_wrap">
+        <a href="#/find">发现音乐</a>
+        <a href="#/my">我的音乐</a>
+        <a href="#/friend">朋友</a>
+    </div>
+    配置路由出口
+    <div class="top">
+        <!-- 路由出口 -> 匹配的组件所展示的位置 -->
+        <router-view></router-view>
+    </div>
+</body>
+</html>

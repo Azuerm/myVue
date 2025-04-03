@@ -1,30 +1,25 @@
 <template>
-    <table class="my-table">
-        <thead>
-            <tr>
-                <slot name="head"></slot>
-            </tr>
-        </thead>
-        <tbody>
-            <tr v-for="(item,index) in data" :key="item.id">
-               <slot name="body" :item="item" :index="index"></slot>
-            </tr>
-        </tbody>
-    </table>
+    <div class="">
+        <table class="my-table">
+            <thead>
+                <tr>
+                    <slot name="head"></slot>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(item,index) in data" :key="item.id">
+                    <slot name="body" :item="item" :index="index"></slot>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </template>
 
 <script>
-// my-table表格组件的封装
-// 1.数据不能写死，动态传递表达渲染的数据 props
-// 2.结构不能写死 - 多处结构自定义  【具名插槽】 ; (1)表头自定义 (2)主体支持自定义
 export default {
     props: {
-        data: {
-            type: Array,
-            required: true
-        }
-    },
-    methods: {}
+        data: Array
+    }
 }
 </script>
 
@@ -53,7 +48,7 @@ export default {
     th {
         text-align: center;
         padding: 10px;
-        transition: all 0.5s;
+        transition: all .5s;
 
         &.red {
             color: red;
