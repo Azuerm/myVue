@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    编程式导航：用JS代码来进行跳转
+    两种语法：
+    1.path路径跳转
+    2.name命名路由跳转（适用于path路径长的场景）
+    <br>
+    1.path路径跳转(简易)
+    this.$router.push('路由路径')
+    this.$router.push({
+        path: '路由路径'
+    })
+    <button @click="goSearch">搜索一下</button>
+    methods: {
+        goSearch() {
+            // 通过路径方式跳转
+            // (1)this.$router.push('路由路径')
+            // this.$router.push('/search') -- 简写
+            // (2)this.$router.push({
+            //     path: '路由路径' --完整写法
+            // })
+            this.$router.push({
+                path: '/search'
+            })
+        }
+    }
+    <br>
+    2.name命名路由跳转（适用于path路径长的场景）
+    （1）在路由规则其名字
+    {name: '路由名',path: '/path/xxx', component: xxx}
+    （2）使用
+    this.$router.push({
+        name: '路由名'
+    })
+
+    const router = new VueRouter({
+        mode: 'history',
+        routes: [
+            {path: '/', redirect: '/home'},
+            {path: '/home', component: Home},
+            {name: 'search', path: '/search/:words?', component: Search},   =>命令路由跳转
+            {path: '*', component: NotFound}
+        ]
+    })
+    methods: {
+        goSearch() {
+            // 2.通过命名路由的方式跳转 (需要给路由起名字)
+            // this.$router.push({
+            //     name: '路由名'
+            // })
+            this.$router.push({
+                name: 'search'
+            })
+        }
+    }
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    声明式导航 - 导航链接 router-link
+    vue-router提供全局组件：router-link取代a标签实现高亮
+    实现导航高亮效果：router-link
+    1.能跳转，配置to属性指定路径(必须)。本质还是a标签，to无需#
+    2.能高亮，默认就会提供高亮类名，可以直接设置高亮样式(自带激活时的类名)
+    被选中的a标签，身上多了两个类名 router-link-exact-active router-link-active
+    <br>
+    1. router-link-active 模糊匹配(用的多)
+        to="/my" 可以匹配以 /my 开头的路径、/my/a、/my/b 
+    2. router-link-exact-active精确匹配
+        to="/my" 只能匹配 /my 的路径
+</body>
+</html>

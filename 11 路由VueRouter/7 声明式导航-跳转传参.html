@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    声明式导航-跳转传参
+    在跳转路由时，进行传值
+    1.查询参数传参(比较适合多个参数)
+    2.动态路由传参(传单个参数)
+    <br>
+    1.查询参数传参
+    （1）跳转：to="/path?参数名=值&参数名=值"
+    （2）接收： $route.query.参数名
+    <router-link to="/search?key=黑马程序员">黑马程序员</router-link>
+    <router-link to="/search?key=前端培训">前端培训</router-link>
+    <router-link to="/search?key=如何成为黑马程序员">如何成为黑马程序员</router-link>
+    <p>搜索关键字: {{ $route.query.key }}</p>
+
+    created() {
+        // 在created中，获得路由参数，this.$route.query.参数名
+        console.log(this.$route.query.key)
+        
+    }
+
+    <br>
+    2.动态路由传参
+    （1）路由： 配置动态路由 => /path/:参数名
+    const router = new VueRouter({
+        routes: [
+            {path: '/home', component: Home},
+            {path: '/search/:words', component: Search}
+        ]
+    })
+    （2）跳转： 配置导航链接 => to="/path/值"
+    <router-link to="/search/黑马程序员">黑马程序员</router-link>
+    <router-link to="/search/前端培训">前端培训</router-link>
+    <router-link to="/search/如何成为黑马程序员">如何成为黑马程序员</router-link>
+    （3）接收：$route.params.参数名
+    <p>搜索关键字: {{ $route.params.words }}</p>
+
+    created() {
+        // 在created中，获得路由参数
+        // this.$route.params.参数名 获得动态路由参数
+        console.log(this.$route.params.words)
+    }
+
+    <br>
+    3.动态路由参数可选符"?"
+    配置了path: '/search/:words'，直接点search页面，页面显示空白；因为/search/:words表示，必须要传参数。如果不传参数，也希望匹配到，可以加个可选符"?"
+    const router = new VueRouter({
+        routes: [
+            {path: '/search/:words?', component: Search}
+        ]
+    })
+</body>
+</html>

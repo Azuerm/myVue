@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    路由模式设置
+    hash路由(默认) http://localhost:8081/#/home
+    history路由(常用)   https://cn.bing.com/images/search
+    <br>
+    hash模式切history模式 => 通过 mode: 'history'
+    const router = new VueRouter({
+        <!-- 一旦求换成history模式，地址栏就没有#，需要后台配置访问规则 -->
+        mode: 'history',
+        routes: [
+            {path: '/', redirect: '/home'},
+            {path: '/home', component: Home},
+            {path: '/search/:words?', component: Search},
+            {path: '*', component: NotFound}
+        ]
+    })
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    路由404
+    作用：当路径找不到匹配时，给个提示页面
+    位置：配在路由最后
+    语法： path: "*" (任意路径) - 前面不匹配就命中最后这个
+    import NotFound from '@/views/NotFound.vue'
+    const router = new VueRouter({
+        routes: [
+            {path: '/', redirect: '/home'},
+            {path: '/home', component: Home},
+            {path: '/search/:words?', component: Search},
+            {path: '*', component: NotFound}
+            <!-- 在views里面创建一个新的vue，用来展示页面找不到信息 -->
+        ]
+    })
+</body>
+</html>

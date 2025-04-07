@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    问题：网页打开，ulr默认是/路径，未匹配到组件时，会出现空白
+    重定向 -> 匹配path后，强制跳转path路径
+    语法：
+    {path: 匹配路径, redirect: 重定向到的路径}
+    const router = new VueRouter({
+        routes: [
+            {path: '/', redirect: '/home'},
+            {path: '/home', component: Home},
+            {path: '/search/:words?', component: Search}
+        ]
+    })
+</body>
+</html>
