@@ -3,10 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Document</title>
 </head>
 <body>
     编程式导航-路由传参
-    
+    两种跳转方式对两种传参方式(查询参数+动态路由传参)都支持
+    1.path路径跳转传参
+    2.name命名路由跳转传参
+    <br>
+    1.path路径跳转传参
+    ------query参数传参
+    （1）传参：
+    this.$router.push('/路径?参数名1=参数值1&参数名2=参数值2')
+    this.$router.push({
+        path: '/路径',
+        qurey: {
+            参数名1: '参数值1',
+            参数名2: '参数值2'
+        }
+    })
+    （2）接收：$route.query.参数名
+    -------动态路由传参(需要配置动态路由 /path/:参数名)
+    （1）传参：
+    this.$router.push('/路径/参数值')
+    this.$router.push({
+        path:'/路径/参数值'
+    })
+    （2）接收： $router.params.参数名
+    <br>
+    2.name命名路由跳转传参 (在路由规则添加name属性)
+    ------query参数传参
+    this.$router.push({
+        name:'路由名字',
+        query: {
+            参数名：参数值
+        }
+    })
+    $route.query.参数名
+    -------动态路由传参（/path/:参数名）
+    this.$router.push({
+        name:'路由名字',
+        params: {
+            参数名：参数值
+        }
+    })
+    $router.params.参数名
 </body>
 </html>

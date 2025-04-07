@@ -11,7 +11,7 @@ const router = new VueRouter({
     routes: [
         {path: '/', redirect: '/home'},
         {path: '/home', component: Home},
-        {name: 'search', path: '/search/:words?', component: Search},
+        {name: 'search', path: '/search/:words', component: Search},
         {path: '*', component: NotFound}
     ]
 })

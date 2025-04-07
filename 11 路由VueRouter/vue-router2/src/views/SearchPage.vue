@@ -1,6 +1,7 @@
 <template>
     <div class="searchpage">
         <!-- <p>搜索关键字: {{ $route.query.key }}</p> -->
+        <!-- <p>搜索关键字：{{ $route.params.words }}</p> -->
         <p>搜索关键字: {{ $route.params.words }}</p>
         <p>搜索结果: </p>
         <ul>
@@ -19,8 +20,8 @@ export default {
         // this.$route.query.参数名 获得查询参数
         // this.$route.params.参数名 获得动态路由参数
         // console.log(this.$route.query.key)
-        console.log(this.$route.params.words)
-        
+        // console.log(this.$route.params.words)
+
     }
 }
 </script>

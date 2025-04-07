@@ -2,7 +2,7 @@
     <div class="home">
         <div class="logo-box"></div>
         <div class="search-box">
-            <input type="text">
+            <input type="text" v-model="inpValue">
             <button @click="goSearch">搜索一下</button>
         </div>
         <div class="hot-link">
@@ -20,25 +20,51 @@
 <script>
 export default {
     name: 'FindMusic',
+    data() {
+        return {
+            inpValue: ''
+        }
+    },
     methods: {
         goSearch() {
             // 1.通过路径方式跳转
             // (1)this.$router.push('路由路径')
+            //      this.$router.push('./路径?参数名=参数值')
             // this.$router.push('/search')
+            // this.$router.push(`/search?key=${this.inpValue}`)
             // (2)this.$router.push({
-            //     path: '路由路径'
+            //     path: '路由路径',
+            //     query: {
+            //         参数名: 参数值,
+            //         参数名: 参数值,
+            //     }
             // })
             // this.$router.push({
-            //     path: '/search'
+            //     path: '/search',
+            //     query: {
+            //         key: this.inpValue
+            //     }
             // })
 
-            // 2.通过命名路由的方式跳转 (需要给路由起名字)
+            // 2.通过动态路由 -- 命名路由的方式跳转 (需要给路由起名字)
             // this.$router.push({
             //     name: '路由名'
             // })
+            // this.$router.push({
+            //     name: 'search'
+            // })
+            // this.$router.push(`/search/${this.inpValue}`)
             this.$router.push({
-                name: 'search'
+                name:'search',
+                // query: {
+                //     key: this.inpValue
+                // }
+                params: {
+                    words: this.inpValue
+                }
             })
+
+
         }
     }
 }
