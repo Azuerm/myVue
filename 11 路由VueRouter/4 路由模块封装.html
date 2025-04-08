@@ -30,5 +30,39 @@
         render: h => h(App),
         router: router
       }).$mount('#app')
+
+    <br>
+    <h2>二级路由：</h2>
+    const router = new VueRouter({
+        routes:[
+            {
+                path: '/',
+                component: Layout,
+                // 通过 children 配置项，可以配置嵌套子路由
+                // 1.在children配置项中，配规则
+                // 2.准备二级路由出口
+                children:[
+                    {path: '/article',component: Article},
+                    {path: '/collect',component: Collect},
+                    {path: '/like',component: Like},
+                    {path: '/user',component: User}
+                ]
+            },
+            {path: '/detail',component: ArticleDetail}
+        ]
+    })
+    <div class="h5-wrapper">
+        <div class="content">
+          <!-- 二级路由出口,匹配到的二级路由组件就会展示 -->
+           <router-view></router-view>
+        </div>
+        <nav class="tabbar">
+            <!-- 导航高亮 1.将a标签，替换成router-link(to);2.结合高亮类名实现高亮效果 -->
+          <router-link to="/article">面经</router-link>
+          <router-link to="/collect">收藏</router-link>
+          <router-link to="/like">喜欢</router-link>
+          <router-link to="/user">我的</router-link>
+        </nav>
+      </div>
 </body>
 </html>

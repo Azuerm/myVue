@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    自动修正： 基于vscode插件ESlint高亮错误，并通过配置 自动 帮组我们修复错误
+    在setting.json配置
+    {
+        "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": true // 保存时自动修复 ESLint 错误
+        },
+        "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact", "vue"], // 检测的文件类型
+        "eslint.format.enable": true // 允许 ESLint 格式化代码
+      }
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    缓存组件：
+    问题：点返回，数据重新加载 -> 希望回到原来的位置
+    原因：路由跳转后，组件被销毁了，返回回来组件又被重建了，所有数据被重新加载了
+    <h3>keep-alive组件缓存</h3>
+    keep-live是Vue的内置组件，当它包裹动态组件时，会缓存不活动的组件实例，而不是销毁他们
+    <br>
+    keep-alive三个属性
+    1.include： 组件名数组，只有匹配的组件会被缓存
+    2.exclude： 组件名数组，任何匹配的组件都不会被缓存
+    3.max: 最多可以缓存多少组件实例
+    exclude和max一起使用
+    <br>
+    <h3>
+        Layout组件(被缓存) - 多两个生命周期钩子，created、mounted、destroyed生命周期函数都不起效果
+            -activated    激活时，组件被看到时触发
+            -deactivated  失活时，离开页面组件看不见时触发
+    </h3>
+    export default {
+        // 组件名，如果没有配置name，才会找文件名作为组件名
+      name: "LayoutPage",
+    }
+    <div class="h5-wrapper">
+        <!-- 包裹了keep-alive，一级路由匹配的组件都会被缓存  Layout组件 Detail组件 都会被缓存-->
+         <!-- 需求：现在只要把Layout组件缓存  :include="组件名数组"-->
+        <keep-alive :include="[LayoutPage]">
+            <router-view></router-view>
+        </keep-alive>
+    </div>
+
+    data() {
+        return {
+            keepArray:['LayoutPage']
+        }
+    }
+    <keep-alive :include="keepArray">
+        <router-view></router-view>
+    </keep-alive>
+
+    <br><br>
+    export default {
+        // 组件名，如果没有配置name，才会找文件名作为组件名
+      name: "LayoutPage",
+        // 一旦组件缓存了，就不会执行组件的created，mounted，destroy钩子了
+        //  所以提供了 activated 和 deactivated
+      created() {
+        console.log('created 组件被加载了')
+      },
+      mounted() {
+        console.log('mounted dom渲染完了');
+      },
+      destroyed() {
+        console.log('destroyed 组件被销毁了');
+      },
+      activated () {
+        alert('你好，欢迎回到首页')
+        console.log('activated 组件被激活了 看到页面了')
+      },
+      deactivated () {
+        console.log('deactivated 组件失活 离开页面了')
+      }
+    }
+
+</body>
+</html>
