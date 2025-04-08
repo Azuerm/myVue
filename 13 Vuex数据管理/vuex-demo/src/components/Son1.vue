@@ -1,9 +1,9 @@
 <template>
  <div class="box">
     <h1>Son1 子组件</h1>
-    从vuex中获取的值：<label></label>
+    从vuex中获取的值：<label>{{ $store.state.count }}</label>
     <br>
-    <button>值 + 1</button>
+    <button @click="handleAdd">值 + 1</button>
  </div>
 </template>
 <script>
@@ -13,7 +13,14 @@ export default {
     return {
     }
   },
-  methods: {}
+  methods: {
+    handleAdd () {
+      // 错误代码(vue默认不会监测，监测需要成本)
+      // this.$store.state.count++
+      // console.log(this.$store.state.count)
+      // 通过mutations核心概念，进行修改数据
+    }
+  }
 }
 </script>
 <style scoped lang="css">

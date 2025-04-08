@@ -1,19 +1,24 @@
 <template>
   <div class="box">
     <h1>Son2 子组件</h1>
-    从vuex中获取的值：<label></label>
+    <!-- 从vuex中获取的值：<label>{{ $store.state.count }}</label> -->
+    从vuex中获取的值：<label>{{ count }}</label>
     <br>
     <button>值 - 1</button>
   </div>
 </template>
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'Son2Com',
   data () {
     return {
     }
   },
-  methods: {}
+  methods: {},
+  computed: {
+    ...mapState(['count'])
+  }
 }
 </script>
 <style scoped lang="css">

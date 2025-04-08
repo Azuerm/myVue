@@ -7,5 +7,23 @@
 </head>
 <body>
   安装vuex插件，初始化一个空仓库
+  1. 安装vuex  -> yarn add vuex@3
+  2. 新建vuex模版文件 -> store/index.js
+  3. 创建仓库  -> Vue.use(Vuex); new Vuex.Store()
+    import Vue from "vue"
+    import Vuex from "vuex"
+    <!-- // 插件安装 -->
+    Vue.use(Vuex)
+    <!-- // 创建仓库（空仓库） -->
+    const store = new Vuex.Store()
+    <!-- // 导出给main.js使用 -->
+    export default store
+  4. main.js导入挂载在vue实例中
+    import store from '@/store/index'
+    new Vue({
+      render: h => h(App),
+      store
+    }).$mount('#app')
+  5.检验 this.$store
 </body>
 </html>

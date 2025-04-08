@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  如何提供和访问vuex的数据
+  <h2>1.提供数据-- state状态</h2>
+  state提供唯一的公共数据源，所有共享的数据都要统一放到store中的state中存放
+  在state对象中可以添加我们要分享的数据
+  <p>
+    const store = new Vuex.Store({
+      // 通过state可以提供数据 -> 所有组件共享的数据（类似于vue组件中的data；data是自己的组件，state是组件共享的数据）
+      state: {
+        title: '大标题',
+        count: 100
+      }
+    })
+  </p>
+  <h2>2.使用数据</h2>
+  （1）通过store直接访问
+      this.$store  和  import 导入 store
+      模版中： {{ $store.state.xxx }}
+      组件逻辑中: this.$store.state.xxx
+      js模块中： store.state.xxx
+  （2）通过辅助函数(简化)
+      利用mapState辅助函数，把store中的数据 自动 映射到 组件的计算属性中
+      导入mapStore -> 数据方式引入state -> 展开运算符映射
+  <p>
+    <h1>根组件 - {{ $store.state.title }} - {{ $store.state.count }}</h1>;
+    created () {
+      // console.log(this.$router) 没配
+      console.log(this.$store.state.count)
+    };
+    import store from '@/store/index'
+    console.log(store.state.count)
+  </p>
+  <p>
+      computed: {
+        count() {
+          <!-- 把state中数据，定义在组件内的计算属性中 -->
+          return this.$store.state.count
+        }
+      }
+      {{ count }}
+     <h3>
+        简化： 
+        导入mapStore -> 数据方式引入state -> 展开运算符映射
+        import { mapState } from 'vuex'
+        computed: {
+          ...mapState(['count', 'title'])
+        }
+     </h3>
+  </p>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  修改vuex中的state里面的数据-mutations
+  vuex同样遵循单行数据流，组件中不能直接修改仓库的数据（通过strict: true可以开启严格模式）
+  <br>
+  handleAdd () {
+    // 错误代码(vue默认不会监测，监测需要成本)
+    this.$store.state.count++
+    console.log(this.$store.state.count)
+  }
+</body>
+</html>
