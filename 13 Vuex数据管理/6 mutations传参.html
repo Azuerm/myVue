@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  mutations必须是同步的(便于监测数据变化，记录调试)
+  mutations传参语法：
+  提交mutation可以传递参数的 => this.$store.commit('xxx方法名', 参数)
+  注意：mutation参数有且只能有一个，如果需要多个参数，包装成一个对象或者数组
+  <br>
+  1.提供mutation函数(带参数-提交载荷)
+  2.页面中提交调用mutation
+  <br>
+  <button @click="handleAdd(1)">值 + 1</button>
+  <h2>1.提供mutation函数</h2>
+  mutations: {
+    addCount (state, n) {
+      state.count += n
+    }
+  }
+  <h2>2.页面中提交调用mutation</h2>
+  methods: {
+    handleAdd (n) {
+      <!-- // 调用带参数的mutation函数 -->
+      this.$store.commit('addCount', n)
+    }
+  }
+  <br>
+  <h2>mutation参数有且只能有一个，如果需要多个参数，包装成一个对象或者数组</h2>
+  methods: {
+    handleAdd (n) {
+      this.$store.commit('addCount', {
+        count: n,
+        msg: '哈哈'
+      })
+    }
+  }
+  mutations: {
+    addCount (state, obj) {
+      console.log(obj)
+      state.count += obj.count
+    }
+  }
+</body>
+</html>

@@ -8,11 +8,38 @@
 <body>
   修改vuex中的state里面的数据-mutations
   vuex同样遵循单行数据流，组件中不能直接修改仓库的数据（通过strict: true可以开启严格模式）
+  1.定义 mutations 对象，对象中存放修改state的方法
+  2.组件中 提交调用 mutations
   <br>
   handleAdd () {
     // 错误代码(vue默认不会监测，监测需要成本)
     this.$store.state.count++
     console.log(this.$store.state.count)
+  }
+  <br>
+  <h2>1.定义 mutations 对象，对象中存放修改state的方法</h2>
+  const store = new Vuex.Store({
+    strict: true,
+    <!-- // 1.通过state可以提供数据 -->
+    state: {
+      title: '仓库大标题',
+      count: 100
+    },
+    <!-- // 2.通过 mutations 可以提供修改数据的方法 -->
+    mutations: {
+      // 所有mutation函数，第一个参数，都是 state
+      addCount (state) {
+        // 修改数据
+        state.count += 1
+      }
+    }
+  })
+  <h2>2.组件中 提交调用 mutations</h2>
+  methods: {
+    handleAdd () {
+      // 需要提交调用mutations
+      this.$store.commit('addCount方法名')
+    }
   }
 </body>
 </html>

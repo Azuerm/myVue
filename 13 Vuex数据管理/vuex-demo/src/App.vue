@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <h1>根组件 - {{ title }} - {{ count }}</h1>
-    <input type="text">
+    <!-- <input type="text" :value="$store.state.count"> -->
+    <input type="text" :value="count" @input="handleInput">
     <Son1></Son1>
     <hr>
     <Son2></Son2>
@@ -25,6 +26,14 @@ export default {
   components: {
     Son1,
     Son2
+  },
+  methods: {
+    handleInput (e) {
+      // 1.实时获得输入框的值
+      console.log(+e.target.value)
+      // 2.提交mutation，调用mutation函数
+      this.$store.commit('changeCount', +e.target.value)
+    }
   }
 }
 </script>

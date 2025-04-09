@@ -1,0 +1,48 @@
+！<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  actions处理异步操作
+  注意：mutations必须是同步的(便于监测数据变化，记录调试)；异步操作用actions处理，用actions不能直接操作state，操作state还是需要commit mutation
+  <br>
+  1.提供action方法
+  2.页面中dispatch调用
+  <br>
+  需求：一秒之后，修改state的count成666
+  <h2>1.提供action方法</h2>
+  const store = new Vuex.Store({
+    strict: true,
+    state: {
+      title: '仓库大标题',
+      count: 100
+    },
+    mutations: {
+      changeCount (state, newCount) {
+        state.count = newCount
+      }
+    },
+    <!-- actions 处理异步,注意：不能直接操作state，操作state还是需要commit mutation -->
+    actions: {
+      <!-- context 上下文(此处未分模块，可以当成store仓库) -->
+      <!-- context.commit('mutation名字', 额外参数) -->
+      changeCountAction (context, num) {
+        <!-- 这里是setTimeout模拟异步，以后大部分场景式发请求 -->
+        setTimeout(() => {
+          context.commit('changeCount', num)
+        }, 1000)
+      }
+    }
+  })
+  <h2>2.页面中dispatch调用</h2>
+  <button @click="handleChange">一秒后修改成666</button>
+  handleChange () {
+    <!-- 调用action
+     this.$store.dispatch('action名字', 额外参数) -->
+    this.$store.dispatch('changeCountAction', 666)
+  }
+</body>
+</html>

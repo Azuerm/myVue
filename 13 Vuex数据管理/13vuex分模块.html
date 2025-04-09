@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  模块module
+  模块拆分：
+  1.在store里面建新文件夹 modules 里面放 user.js、setting.js
+  2.在js文件中
+    const state = {}
+    const mutation = {}
+    const actions = {}
+    const getters = {}
+    // 导出
+    export default {
+      state,
+      mutation,
+      actions,
+      getters
+    }
+  3.在store里面的index.js进行导入和放入vuex
+  import user from './modules/user'
+  import setting from './modules/setting'
+  const store = new Vuex.Store({
+    <!-- // 5.模块 -->
+    modules: {
+      user,
+      setting
+    }
+  })
+  <br>
+  使用模块中的数据：
+  1.直接使用模块名访问：$store.state.模块名.xxx
+  2.通过mapState映射
+  默认根级别映射 mapState(['xxx'])
+  子模块映射 mapState('模块名',['xxx']) -需要开启命名空间
+  export default {
+    namespaced: true;
+    state,
+    mutation,
+    actions,
+    getters
+  }
+</body>
+</html>

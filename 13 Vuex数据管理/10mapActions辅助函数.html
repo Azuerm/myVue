@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  mapActions辅助函数
+  mapActions是把actions中的方法提取出来，映射到组件methods中
+  <br>
+  actions: {
+    changeCountAction (context, num) {
+      setTimeout(() => {
+        context.commit('changeCount', num)
+      }, 1000)
+    }
+  }
+  <br>
+  methods: {
+    handleChange (n) {
+      this.$store.dispatch('changeCountAction', n)
+    }
+  }
+  简化：
+  import { mapActions } from 'vuex'
+  methods: {
+    ...mapActions(['changeCountAction'])
+  }
+  调用：this.changeCountAction(n)
+  <button @click="changeCountAction(888)">一秒后改成888</button>
+</body>
+</html>

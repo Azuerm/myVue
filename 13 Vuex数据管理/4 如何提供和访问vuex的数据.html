@@ -27,7 +27,7 @@
       js模块中： store.state.xxx
   （2）通过辅助函数(简化)
       利用mapState辅助函数，把store中的数据 自动 映射到 组件的计算属性中
-      导入mapStore -> 数据方式引入state -> 展开运算符映射
+      导入mapStore -> 数组方式引入state -> 展开运算符映射
   <p>
     <h1>根组件 - {{ $store.state.title }} - {{ $store.state.count }}</h1>;
     created () {
@@ -47,11 +47,12 @@
       {{ count }}
      <h3>
         简化： 
-        导入mapStore -> 数据方式引入state -> 展开运算符映射
+        导入mapStore -> 数组方式引入state -> 展开运算符映射
         import { mapState } from 'vuex'
         computed: {
           ...mapState(['count', 'title'])
         }
+        {{ count }}
      </h3>
   </p>
 </body>

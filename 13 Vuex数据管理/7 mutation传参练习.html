@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  1.输入框内容渲染 :value=""
+  2.监听输入、获得内容 @input=
+  3.封装mutation处理函数
+  4.调用传参 commit
+  <!-- <input type="text" :value="$store.state.count"> -->
+  <input type="text" :value="count" @input="handleInput">
+
+  changeCount (state, newCount) {
+    state.count = newCount
+  }
+
+  methods: {
+    handleInput (e) {
+      // 1.实时获得输入框的值
+      console.log(+e.target.value)
+      // 2.提交mutation，调用mutation函数
+      this.$store.commit('changeCount', +e.target.value)
+    }
+  }
+</body>
+
+</html>

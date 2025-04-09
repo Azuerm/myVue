@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  computed: {
+    // mapState 和 mapGetters 都是映射属性
+    ...mapState(['count']),
+    ...mapGetters(['filterList'])
+  },
+  methods: {
+    // mapMutations 和 mapActions都是映射方法
+    ...mapMutations(['subCount', 'changeTitle']),
+    ...mapActions(['changeCountAction'])
+  }
+</body>
+</html>

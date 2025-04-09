@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  辅助函数-mapMutations
+  mapState映射状态；mapMutations映射方法
+  <br>
+  mapMutations把位于mutations中的方法提取出来，映射到组件methods中
+  <br>
+  mutations: {
+    subCount (state, n) {
+      state.count -= n
+    }
+  }
+  <br>
+  methods: {
+    subCount (n) {
+      this.$store.commit('subCount', n)
+    }
+  }
+  <br>
+  <h2>简写为：</h2>
+  import { mapMutations } from 'vuex'
+  methods: {
+    ...mapMutations(['subCount'])
+  }
+  调用： this.subCount(10)
+  <br>
+  methods: {
+    ...mapMutations(['subCount']),
+    handelSub (n) {
+      this.subCount(n)
+    }
+  }
+  或者
+  页面直接用
+  <button @click="subCount(10)">值 - 10</button>
+</body>
+</html>

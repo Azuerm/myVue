@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  getters(类似于计算属性)
+  除了state之外，有时我们还需要从state中派生出一些状态，这些状态是依赖state，此时会用到getters、
+  <br>
+  1.定义getters
+  2.访问 -> (1)通过store访问getters；(2)通过辅助函数mapGetters映射
+  <br>
+  例如：state中定义list，为1-10的数组，组件中，需要显示所有大于5的数据
+  state: {
+    list: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  }
+  <h2>1.定义getters</h2>
+  const store = new Vuex.Store({
+    <!-- getters 类似于计算属性computed；只能设置，不能修改，修改需要通过mutations -->
+    getters: {
+      <!-- // 1.形参第一个参数就是 state
+      // 2.必须有返回值，返回值就是getters的值 -->
+      filterList (state) {
+        return state.list.filter(item => item > 5)
+      }
+    }
+  })
+  <h2>2.访问</h2>
+  (1)通过store访问getters；
+  <div>{{ $store.getters.filterList }}</div>
+  (2)通过辅助函数mapGetters映射
+  import { mapGetters } from 'vuex'
+  computed: {
+    ...mapGetters(['filterList'])
+  }
+  <div> {{ filterList }} </div>
+</body>
+</html>
