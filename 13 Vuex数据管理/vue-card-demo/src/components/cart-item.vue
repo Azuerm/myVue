@@ -13,7 +13,7 @@
         <span class="price">￥{{ item.price }}</span>
         <div class="btns">
           <!-- 按钮区域 -->
-          <button class="btn btn-light" @click="handelCount(-1)">-</button>
+          <button class="btn btn-light" @click="handelCount(-1)" :disabled="item.count <= 1">-</button>
           <span class="count">{{ item.count }}</span>
           <button class="btn btn-light"  @click="handelCount(1)">+</button>
         </div>
@@ -23,15 +23,21 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: 'CartItem',
   methods: {
+    ...mapActions('cart', ['updateCountAsync']),
     handelCount (step) {
       const id = this.item.id
       const newCount = this.item.count + step
       if (newCount < 1) return
       console.log('count:', newCount );
-      this.$store.dispatch('cart/updateCountAsync', {
+      // this.$store.dispatch('cart/updateCountAsync', {
+      //   id,
+      //   newCount
+      // })
+      this.updateCountAsync({
         id,
         newCount
       })
@@ -43,6 +49,7 @@ export default {
       required: true
     }
   }
+  ,
 }
 </script>
 

@@ -14,7 +14,7 @@
 import CartHeader from '@/components/cart-header.vue'
 import CartFooter from '@/components/cart-footer.vue'
 import CartItem from '@/components/cart-item.vue'
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   name: 'App',
@@ -24,7 +24,11 @@ export default {
     CartItem
   },
   created() {
-    this.$store.dispatch('cart/getList')
+    this.$store.dispatch('cart/getList'),
+    this.getList()
+  },
+  methods: {
+    ...mapActions('cart', ['getList'])
   },
   computed: {
     ...mapState('cart',['list'])

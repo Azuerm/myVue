@@ -29,14 +29,22 @@ export default {
         count: obj.newCount
       })
       // 将修改更新同步到 vuex
-      console.log(res.data);
-      
       context.commit('updateCount', {
         id: obj.id,
-        // count: res.data.count
         newCount: obj.newCount
       })
     }
   },
-  getters: {}
+  getters: {
+    total (state) {
+      return state.list.reduce((sum, item) => {
+        return sum + item.count
+      }, 0)
+    },
+    totalPrice (state) {
+      return state.list.reduce((sum, item) => {
+        return sum + item.count * item.price
+      }, 0)
+    }
+  }
 }

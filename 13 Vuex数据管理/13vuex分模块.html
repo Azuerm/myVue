@@ -10,7 +10,11 @@
   模块拆分：
   1.在store里面建新文件夹 modules 里面放 user.js、setting.js
   2.在js文件中
-    const state = {}
+   <!-- user.js -->
+    const state = {
+      list: ['敏敏'],
+      obj: { xxx }
+    }
     const mutation = {}
     const actions = {}
     const getters = {}
@@ -31,6 +35,7 @@
       setting
     }
   })
+
   <br>
   使用模块中的数据：
   1.直接使用模块名访问：$store.state.模块名.xxx
@@ -44,6 +49,19 @@
     actions,
     getters
   }
-  ...mapState('cart', ['list'])
+  ...mapState('user', ['list'])
+  this.$store.dispatch('cart/getList')
+  <!-- vue.js 文件 -->
+  import mapState from 'vuex'
+  computed: {
+    ...mapState('user', ['list']),
+  },
+  methods: {
+    // mapMutations 和 mapActions都是映射方法
+    ...mapMutations(['subCount', 'changeTitle']),
+    ...mapActions(['changeCountAction'])
+  }
+
+  {{ list }} // ['敏敏']
 </body>
 </html>
