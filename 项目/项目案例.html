@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  搭建脚手架-》1 全局安装，2 vuecreate创建项目，3 自定义配置
+  <br>
+  调整初始化目录-》1 删除多余文件；2 修改路由配置 和 App.vue(只留路由出口)；3 新增两个目录api 、 utils (api接口模块，utils工具模块-存放子封装的工具方法模块)； 
+  <br>
+  安装vant-ui组件库 -》1 安装 yarn add vant@latest-v2 ； 2 安装插件 npm i babel-plugin-import -D；3 在babel.config.js 中添加配置； 4 main.js中导入和注册 import { Button } from 'vant' 、Vue.use(Button)； 5 测试使用 ;
+  6 最后放在utils里面新建的vant-ui.js 里面（4）；再在main.js导入 import '@/utils/vant-ui'
+  <br>
+  项目中的vw适配(移动端)：px转vw-基于postcss插件；1 安装插件 yarn add postcss-px-to-viewport@1.1.1 -D ; 2 根目录新建postcss.config进行配置 
+  <br>
+  路由设计配置：
+  （1）一级路由(但凡是单个页面，独立展示):1 在views文件夹 建不同功能的文件夹里面放index.js ; 2 在router中的index.js配置路由规则
+  （2）二级路由：1 组件和规则；2 配置导航链接 3.配置路由出口
+  <br>
+  登录页静态布局： 
+  （1）准备工作：1.新建style文件夹中的common.less重置默认样式；2 在main.js导入应用 import '@/style/common.css'
+  （2）样式
+  <br>
+  request模块-axios封装：1 安装axios 2新建request模块在utils/request.js; 3 创建实例和自定义配置(https://www.axios-http.cn/docs/instance)，导出实例； 4 测试使用
+</body>
+</html>

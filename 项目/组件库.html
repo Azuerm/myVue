@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  vue组件库
+  ①PC端：element-ui(element-plus) ant-design-vue
+  ②移动端：vant-ui Mint U(饿了么) Cube UL(滴滴)
+  <br>
+  组件库使用：查看文档 =》安装 =》选择按需导入
+  <!-- npm i vant@latest-v2 -S --legacy-peer-deps -->
+  <br>
+  演示全部导入：
+  1.安装vant-ui： yarn add vant@latest-v2
+  2.main.js中导入和注册 
+    import Vant from 'vant';
+    import 'van/lib/index.css';
+    Vue.use(Vant)
+  3.使用测试
+  <van-button type="primary">主要按钮</van-button>
+</body>
+</html>

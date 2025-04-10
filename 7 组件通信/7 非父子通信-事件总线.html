@@ -20,7 +20,6 @@
         created() {
             // 2.在A组件接收方，进行箭头Bus的事件（订阅消息）
             Bus.$on('sendMsg', (msg) => {
-                // console.log(msg)
                 this.msg = msg
                 
             })
