@@ -24,5 +24,58 @@
   （2）样式
   <br>
   request模块-axios封装：1 安装axios 2新建request模块在utils/request.js; 3 创建实例和自定义配置(https://www.axios-http.cn/docs/instance)，导出实例； 4 测试使用
+  <br>
+  图形验证码功能：1.动态将请求回来的base64图片，解析渲染出来；2.点击验证码图片盒子，要刷新验证码
+  <br>
+  api接口模块-封装图片验证码接口: 1.新建请求模块 api/login.js ; 2.封装请求函数-导入request，请求时return结果； 3 页面中按需导入使用 import { getPicCode } from '@/api/login'
+  <br>
+  Toast轻提示：1.在utils里面的vant-ui.js进行注册安装 import { Toast } from 'vant'; Vue.use(Toast); 2.使用方式两种：导入调用(组件内或非组件内) import { Toast } from 'vant';Toast('获取图形验证码成功')；通过this直接调用(必须在组件内) this.$toast('获取成功')--把方法挂载到vue原型上
+  <br>
+  短信验证倒计时：1.点击按钮，实现倒计时效果；2.倒计时之前的校验处理（手机号、验证码）；3.封装短信验证请求接口，发送请求添加提示
+  <br>
+  登录功能：1.阅读接口文档，封装登录接口
+  2.登录前的校验（手机号，图形验证码，短信验证码）
+  3.调用方法，发送请求，成功添加提示并跳转
+  <br>
+  响应拦截器统一处理错误提示 utils/request.js :  const res = response.data
+  if (res.status !== 200) {
+    Toast(res.message)
+    return Promise.reject(res.message)
+  }
+  return res
+  <br>
+  登录权证信息存储（vuex构建user模块存储登录权证token 和 userId）: 1 构建一个user模块 store/modules/user.js ；
+  2 挂载到vuex；import user from './modules/user';modules: { user } ;3 提供mutations； 4 页面中commit调用
+  <br>
+  storage存储模块-vuex持久化处理：
+  1.在utils里面建storage.js
+  2.进行持久化存储
+  3.导入到store/modules/user.js中使用
+  <br>
+  添加请求loading效果（统一在每次请求后台时，添加loading效果）
+  1.请求拦截器中，每次请求，打开loading
+  2.响应拦截器中，每次响应，关闭loading
+  <br>
+  基于全局前置导航守卫，进行页面访问拦截处理（对于支付页、订单页，必须要登录的用户才能访问，游客不可以，需要拦截处理）：
+  访问权限页面时，拦截或放行的关键点？ -> 用户是否有登录权证token
+  <br>
+  首页-静态结构准备和动态渲染
+  1.构建页面 2.在api中创建home.js用于请求数据 3.在home.vue中调用，渲染页面
+  <br>
+  搜索-历史记录管理：
+  需求：
+  1.搜索历史基本渲染
+  2.点击搜索（添加历史）
+  点击搜索按钮或底下历史记录，都能进行搜索
+  ①若之前没有相同搜索关键字，则直接追加到最前面
+  ②若之前已有相同搜索关键字，将该原有关键字移除，再追加
+  3.清空历史：添加清空图标，可以清空历史记录
+  4.持久化：搜索历史需要持久化，刷新历史不丢失
+  <br>
+  搜索列表-静态布局和渲染
+  1 静态结构 2 封装接口  3 获得参数调用接口 4 动态渲染
+  分类完成 category.vue
+  <br>
+  商品详情页-静态结构和动态渲染
 </body>
 </html>
