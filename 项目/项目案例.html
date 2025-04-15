@@ -77,5 +77,74 @@
   分类完成 category.vue
   <br>
   商品详情页-静态结构和动态渲染
+  1 静态结构 2 封装接口  3 动态路由获取采纳数 4 获得数据，动态渲
+  <br>
+  加入购物车-唤起弹层
+  1.熟悉弹层，基本展示 2.完善弹层结构 3.弹层动态渲染
+  <br>
+  加入购物车-封装数字框组件
+  分析：组件名CountBox
+    1.静态结构，左中右三部分
+    2.数字框的数字，应该是外部传递进来的（父传子）
+    3.点击+-号，可以修改数字（子传父）
+    4.使用v-model实现封装(：value和@input的简写)
+    5.数字不能减到小于1
+  <br>
+  加入购物车-判断token添加登录提示
+  说明：加入购物车，是一个登录后的用户才能进行的操作
+  所以需要进行鉴权判断，判断用户token是否存在
+  1.若存在：继续加入购物车操作
+  2.不存在：提示用户未登录，引导到登录页，登录完回跳
+  if (!this.$store.getters.token) {
+    // console.log('弹确认框')
+    this.$dialog.confirm({ 
+      title:'温馨提示',
+      message:'此时需要先登录才能继续操作哦',
+      confirmButtonText: '去登录',
+      cancelButtonText: '再逛逛'
+    })
+      .then(() => {
+        // 如果希望，跳转到登录 => 登录后能回跳回来，需要在跳转去携带参数(当前的路径地址)
+        // this.$route.fullPath(会包含查询参数)
+        this.$router.replace({
+          <!-- // push会不断往历史记录累加， replace不会新增历史，替换原有的历史 -->
+          path: '/login',
+          query: {
+            backUrl: this.$route.fullPath
+          }
+        })
+      })
+      .catch(() => {})
+    return
+  }
+  // 进行判断，看地址栏有无回跳地址
+  // 1.如果有 => 说明是其他页面，拦截到登录来的，需要回跳
+  // 2.如果没有 => 正常去首页
+  const url = this.$route.query.backUrl || '/'
+  this.$router.replace(url)
+  <br>
+  加入购物车-封装接口进行请求
+  1.api/cart.js中封装接口
+  2.页面中调用接口
+  // 只要有token，就在请求时携带，便于请求需要授权的接口
+  const token = store.getters.token
+  if(token) {
+    config.headers['Access-Token'] = token
+  }
+  <br>
+  购物车
+  1.基本静态结构
+  2.构建vuex cart模块，获取数据存储
+    在modules中创建cart.js模块，在index中导入
+    在api中的cart.js封装获得商品列表的函数
+    在store中cart.js导入接口，并且提供actions和mutation方法，进行修改数据
+    通过store.dispatch 调用
+  3.基于数据动态渲染购物车列表
+  
+  4.封装getters实现动态统计
+  5.全选反选功能
+  6.数字框修改数量功能
+  7.编辑切换状态，删除功能
+  8.空购物车处理
 </body>
 </html>
