@@ -146,5 +146,52 @@
   6.数字框修改数量功能
   7.编辑切换状态，删除功能
   8.空购物车处理
+  <br>
+  订单结算台
+  1.收货地址列表渲染 api/address
+  2.确认订单信息
+    购物车结算和立即购买阶段，订单信息确认，可以共用同一个接口，但参数不同
+    (1)购物车结算：1.跳转传递查询参数mode="cart"和cartlds
+    2.页面中$route.query接收参数
+    3.调用接口，获取数据
+    4.基于数据渲染
+    (2)立即购买结算：
+    1.跳转传递查询参数
+    mode="buyNow",goodsld,goodsSkuld,goodsNum
+    2.页面中$route.quey接收参数
+    3.调用接口，获取数据
+    4.基于数据渲染
+    5.未登录时，确认框的复用(mixins混入)
+      // 判断token是否存在
+      // 1.如果token不存在，弹确认框
+      // 2.如果token存在，继续请求操作
+      if (!this.$store.getters.token) {
+        // console.log('弹确认框')
+        this.$dialog.confirm({ 
+          title:'温馨提示',
+          message:'此时需要先登录才能继续操作哦',
+          confirmButtonText: '去登录',
+          cancelButtonText: '再逛逛'
+        })
+          .then(() => {
+            // 如果希望，跳转到登录 => 登录后能回跳回来，需要在跳转去携带参数(当前的路径地址)
+            // this.$route.fullPath(会包含查询参数)
+            this.$router.replace({
+              // push会不断往历史记录累加， replace不会新增历史，替换原有的历史
+              path: '/login',
+              query: {
+                backUrl: this.$route.fullPath
+              }
+            })
+          })
+          .catch(() => {})
+        return
+      }
+      mixins混入：1.在src下键mixins文件夹，在里面建loginConfirm.js；2.在里面导出data、methods等；3.使用：组件中先导入import loginConfirm from '@/mixins/loginConfirm'，然后mixins: ['loginConfirm'] 接收; 直接在页面使用 this.loginConfirm()
+      <br>
+    提交订单并支付
+    1.封装通用请求方法
+    2.买家留言绑定
+    3.注册事件，调用方法提交订单并支付
 </body>
 </html>
