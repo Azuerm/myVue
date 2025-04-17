@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  命令：yarn build
+  结果：在项目根目录会自动创建一个文件夹 dist；dist中的文件就是打包后的文件，只需要放到服务器中即可；
+  配置：默认情况下，需要放到服务器根目录打开，如果希望双击运行，需要配置publicPath配成相对路径
+  <br>
+  在 vue.config.js 中
+  const { defineConfig } = require('@vue/cli-service')
+  module.exports = defineConfig({
+    publicPath: './',
+    <!-- ./ -->
+    transpileDependencies: true
+  })
+  <br>
+  打包优化：路由懒加载（实现按需加载）
+  1.异步组件改造
+  const Layout = () => import('@/views/layout')
+  const Search = () => import('@/views/search')
+  2.路由中应用
+  const router = new VueRouter({
+    routes: [
+      { path: '/login', component: Login },
+      { path: '/', 
+        component: Layout,
+        redirect: '/home',
+        children: [
+          { path: '/home', component: Home},
+          { path: '/category', component: Category},
+          { path: '/cart', component: Cart},
+          { path: '/user', component: User}
+        ]
+      }
+    ]
+  })
+</body>
+</html>
