@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  vue中默认的数据不是响应式的
+  reactive()函数：接受对象类型数据的参数传入并返回一个响应式的对象
+  1.从vue包中导入reactive
+  2.在script setup 中执行reactive函数 并传入类型为对象的初始值，并使用变量接收返回值
+  <script setup>
+    // reactive：接收一个对象类型的数据，返回一个响应式的对象
+    import {reactive} from 'vue'
+    const state = reactive({
+      count: 100
+    })
+    const setCount = () => {
+      state.count++
+    }
+    </script>
+    <template>
+     <div class="">
+      {{ state.count }}
+      <button @click="setCount">+1</button>
+     </div>
+    </template>
+  <br>
+  2.ref：接收简单类型 或 复杂类型，返回一个响应式的对象
+  1.从vue包中导入ref
+  2.在script setup 中执行ref函数 并传入初始值，并使用变量接收 ref函数的返回值
+  注意点：1.在脚本script中访问数据，需要通过 .value 
+  2.在template中，.value不需要加(帮我们扒了一层)
+  <script setup>
+    // 2.ref：接收简单类型 或 复杂类型，返回一个响应式的对象
+    //    本质：是在原有传入数据的基础上，外层包了一层对象，包成了复杂数据类型
+    //    底层，包成复杂类型之后，在借助reactive实现的响应式
+    //    注意点：1.在脚本script中访问数据，需要通过 .value 
+    //    2.在template中，.value不需要加(帮我们扒了一层)
+    import { ref } from 'vue'
+    const count = ref(0)
+    console.log(count.value)
+    const setCount1 = () => {
+      count.value++
+    }
+    </script>
+    <template>
+     <div class="">
+      {{ count}}
+      <button @click="setCount1">+1</button>
+     </div>
+    </template>
+     
+    <style scoped lang="less">
+    </style>
+</body>
+</html>

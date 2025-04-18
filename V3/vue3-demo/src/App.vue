@@ -1,42 +1,34 @@
-<!-- <script>
-// setup
-// 1.执行时机，比beforeCreate还要早
-// 2.setup函数中，获取不到this(this还是undefined)
-// 3.数据和函数，需要在setup最后return，才能模版中应用
-// 4.通过setup语法糖简化代码
-  export default {
-    setup () {
-      // console.log('setup函数', this)  // undefined
-      // 数据
-      const message = 'hello Vue3'
-      // 函数
-      const logMessage = () => {
-        console.log(message)
-      }
-
-      return {
-        message,
-        logMessage
-      }
-    },
-    beforeCreate() {
-      console.log('beforeCreate函数')
-    }
-  }
-</script> -->
 <script setup>
-  const message = 'this is message'
-  const logMessage = () => {
-    console.log(message)
-  }
+import testCom from './components/test-com.vue'
+import { onMounted, ref } from 'vue';
+// 模版引用(可以获取dom，也可以获取组件)
+// 1.调用ref函数，生成一个ref对象
+// 2.通过ref标识，进行绑定
+// 3.通过ref对象.value 即可访问到绑定的元素(必须渲染完成后，才能拿到)
+const inp = ref(null)
+// 生命周期钩子 onMounted
+// onMounted(() => {
+//   console.log(inp.value)
+//   inp.value.focus()
+// })
+const clickFn = () => {
+  inp.value.focus()
+}
+// ---------------
+const testRef = ref(null)
+const getCom = () => {
+  console.log(testRef.value)
+  console.log(testRef.value.count)
+  testRef.value.sayHi()
+}
 </script>
-
 <template>
- <div class="">
-  {{ message }}
-  <button @click="logMessage">按钮</button>
- </div>
+  <div class="">
+    <input ref="inp" type="text">
+    <button @click="clickFn">点击让输入框聚焦</button>
+  </div>
+  <testCom  ref="testRef"></testCom>
+  <button @click="getCom">获取组件</button>
 </template>
- 
-<style scoped lang="less">
-</style>
+
+<style scoped lang="less"></style>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  模版引用：通过ref标识获取真实的dom对象或者组件实例对象
+  1.通过 ref函数 生成一个 ref对象
+  2.通过 ref标识 绑定 ref对象 到标签
+  <br>
+  默认情况下script setup 语法糖下 组件内部的属性的方法是不开放 给父组件访问的
+  可以通过 defineExpose编译宏 指定哪些属性和方法允许访问
+  <br>
+  <script setup>
+    import testCom from './components/test-com.vue'
+    import { onMounted, ref } from 'vue';
+    // 模版引用(可以获取dom，也可以获取组件)
+    // 1.调用ref函数，生成一个ref对象
+    // 2.通过ref标识，进行绑定
+    // 3.通过ref对象.value 即可访问到绑定的元素(必须渲染完成后，才能拿到)
+    const inp = ref(null)
+    // 生命周期钩子 onMounted
+    // onMounted(() => {
+    //   console.log(inp.value)
+    //   inp.value.focus()
+    // })
+    const clickFn = () => {
+      inp.value.focus()
+    }
+    // ---------------
+    const testRef = ref(null)
+    const getCom = () => {
+      console.log(testRef.value)
+      console.log(testRef.value.count)
+      testRef.value.sayHi()
+    }
+  </script>
+  <template>
+    <div class="">
+      <input ref="inp" type="text">
+      <button @click="clickFn">点击让输入框聚焦</button>
+    </div>
+    <testCom ref="testRef"></testCom>
+    <button @click="getCom">获取组件</button>
+  </template>
+  <h1>---------------------</h1>
+  <script setup>
+    const count = 999
+    const sayHi = () => {
+      console.log('你好')
+    }
+    defineExpose({
+      count,
+      sayHi
+    })
+  </script>
+  <template>
+    <div>
+      我是用于测试的组件 -- {{ count }}
+    </div>
+  </template>
+</body>
+
+</html>

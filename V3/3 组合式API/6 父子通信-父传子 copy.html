@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  父传子，子传父
+  父传子：
+  1.父组件中给子组件绑定属性
+  2.子组件内部通过props选项接收
+  <!-- 通过defineProps 编译器宏 接受子组件传递的数据 -->
+  const props = defineProps({
+  message: String
+  })
+  <br>
+  <script setup>
+    // 父传子
+    // 1.给子组件，添加属性的方式传值
+    // 2.在子组件，通过props接收
+    // 局部组件(导入进来就能用)
+    import sonCom from './components/son-com.vue'
+    import { ref } from 'vue';
+    const money = ref(100)
+    const getMoney = () => {
+      money.value += 10
+    }
+  </script>
+  <template>
+    <div class="">
+      <h3>
+        父组件 -- {{ money }}
+        <button @click="getMoney">挣钱</button>
+      </h3>
+      <!-- 给子组件，添加属性的方式传值 -->
+      <sonCom car="宝马车" :money="money"></sonCom>
+    </div>
+  </template>
+  <h1>-----------------------------</h1>
+  <script setup>
+    // 注意：由于写了setup，所以无法直接配置props选项
+    // 所以：此处需要借助于“编辑器宏”函数接收子组件传递的数据
+    const props = defineProps({
+      car: String,
+      money: Number
+    })
+    console.log(props.car)
+    console.log(props.money)
+  </script>
+  <template>
+    <!-- 对于props传递过来的数据，模版中可以直接使用 -->
+    <div class="son">我是子组件 -- {{ car }} -- {{ money }}</div>
+  </template>
+</body>
+
+</html>

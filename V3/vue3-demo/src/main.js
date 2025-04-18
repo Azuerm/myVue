@@ -1,6 +1,4 @@
-import './assets/main.css'
-
-// new Vue() 创建一个应用实例 => createApp
+//  new Vue() 创建一个应用实例 => createApp
 // createRouter()、createStore()
 // 将创建实例进行了封装，保证每个实例的独立封闭性
 import { createApp } from 'vue'

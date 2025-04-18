@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  computed计算属性函数
+  1.导入computed函数
+  2.执行函数 在回调参数中 return 基于相应式数据做计算的值，用变量接受
+  <script setup>
+    // const 计算属性 = computed(() => {
+    //    return 计算返回的结果
+    // })
+    import { ref, computed } from 'vue'
+    // 声明数据
+    const list = ref([1,2,3,4,5,6,7,8])
+    // 基于list派生一个计算属性，从list中过滤出 > 2
+    const computedList = computed( () => {
+     return list.value.filter( item => item > 2 )
+    }) 
+    // 定义一个修改数组的方法
+    const addFn = () => {
+      list.value.push(666)
+    }
+    </script>
+    <template>
+     <div class="">
+      <div>原始数据： {{ list }}</div>
+      <div>计算后的数据： {{ computedList }}</div>
+      <button @click="addFn">修改</button>
+     </div>
+    </template>
+</body>
+</html>

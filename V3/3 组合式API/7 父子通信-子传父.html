@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  子传父：
+  1.子组件内部通过emit方法触发事件
+  （1）通过defineEmits编译器宏生成emit方法
+  const emit = defineEmits(['get-message'])
+  （2）触发自定义事件，并传递参数
+  const senMsg = () => {
+  emit('get-message', 'this is son msg')
+  }
+  2.父组件中给子组件标签 通过@绑定事件
+  <br>
+  <script setup>
+    const emit = defineEmits(['changeMoney'])
+    const buy = () => {
+      // 需要emit触发事件
+      emit('changeMoney', 5)
+    }
+  </script>
+  <template>
+    <!-- 对于props传递过来的数据，模版中可以直接使用 -->
+    <div class="son">
+      我是子组件 -- {{ car }} -- {{ money }}
+      <button @click="buy">花钱</button>
+    </div>
+  </template>
+  <h1>-----------------------------</h1>
+  <script setup>
+    // 子传父
+    // 1.在子组件内部，emit触发事件（编译器宏获取emit事件）
+    // 2.在父组件，通过 @ 箭头
+    // 局部组件(导入进来就能用)
+    const changeFn = (newMoney) => {
+      money.value = newMoney
+    }
+    </script>
+    <template>
+      <div class="">
+        <h3>
+          父组件 -- {{ money }}
+          <button @click="getMoney">挣钱</button>
+        </h3>
+        <sonCom 
+          car="宝马车" 
+          :money="money" 
+          @changeMoney="changeFn">
+        </sonCom>
+      </div>
+    </template>
+</body>
+
+</html>
