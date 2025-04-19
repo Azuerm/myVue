@@ -1,13 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+
 <body>
   顶层组件向任意底层组件传递数据和方法，实现跨层组件通信
   1.顶层组件通过provide函数提供数据
+  provide('key', 顶层组件中的数据)
   2.底层组件通过inject函数获取数据
+  const message = inject('key')
+  <br>
+  <script setup>
+    import centerCom from '@/components/center-com.vue'
+    import { provide } from 'vue';
+    import { ref } from 'vue';
+    // 1.跨层传递普通数据
+    provide('theme-color', 'pink')
+    // 2.跨层传递响应式数据
+    const count = ref(100)
+    provide('count', count)
+    setTimeout(() => {
+      count.value = 500
+    }, 2000)
+    // 3.跨层传递函数 => 给子孙后代传递可以修改数据的方法
+    provide('changeCount', (newCount) => {
+      count.value = newCount
+    })
+  </script>
+  <template>
+    <div class="">
+      <h1>我是顶层组件</h1>
+      <centerCom></centerCom>
+    </div>
+  </template>
+  <h1>--------------------------</h1>
+  <script setup>
+    import { inject } from 'vue'
+    const themeColor = inject('theme-color')
+    const count1 = inject('count')
+    const changeCount = inject('changeCount')
+    const clickFn = () => {
+      changeCount(1000)
+    }
+  </script>
+  <template>
+    <div class="">
+      <h2>我是底层组件 -- {{ themeColor }} -- {{ count1 }}</h2>
+      <button @click="clickFn">更新count</button>
+    </div>
+  </template>
 </body>
+
 </html>

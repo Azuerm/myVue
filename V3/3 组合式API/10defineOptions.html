@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  defineOptions
+  所以在Vue3.3中新引入了defineOptions宏。顾名思义，主要是用来定义Options API的选项。可以用
+  defineOptions定义任意的选项，props,emits,expose,,slots除外（因为这些可以使用defineXXX来做到
+  <br>
+    <!-- <script>
+  export default {
+    name: 'LoginIndex'
+  }
+  </script> -->
+  <script setup>
+    defineOptions({
+      name: 'LoginIndex'
+    })
+  </script>
+  <template>
+    <div class="">
+      我是登录页
+    </div>
+  </template>
+</body>
+
+</html>

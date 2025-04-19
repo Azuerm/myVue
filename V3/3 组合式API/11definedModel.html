@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  vue3中的v-model和defineModel
+  在vue3中，自定义 组件上使用v-model，相当于传递一个modelValue属性，同时触发 updata：modeValue事件
+  <input type="text" v-model="isVisible">
+  <!-- 相当于 -->
+  <input type="text" :modeVisible="isVisible" @update:modeValue="isVisible=$event">
+  <br>
+  --------------------------
+  <script setup>
+    import MyInput from '@/components/my-input.vue'
+    import { ref } from 'vue';
+    const txt = ref('123456')
+  </script>
+  <template>
+    <div class="">
+      <MyInput v-model="txt"></MyInput>
+      {{ txt }}
+    </div>
+  </template>
+  <h1>---------------------</h1>
+  <script setup>
+    // defineProps({
+    //   modelValue: String
+    // })
+    // const emit = defineEmits(['update:modelValue'])
+    import { defineModel } from 'vue'
+    // 相当于props接收参数
+    const modelValue = defineModel()
+  </script>
+  <template>
+    <div class="">
+      <!-- <input 
+        type="text"
+        :value="modelValue"
+        @input="e => emit('update:modelValue', e.target.value)"
+        > -->
+      <input type="text" :value="modelValue" @input="e => modelValue = e.target.value">
+    </div>
+  </template>
+</body>
+
+</html>
