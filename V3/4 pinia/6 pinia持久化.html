@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  pinia持久化：https://prazdevs.github.io/pinia-plugin-persistedstate/zh/
+  1.安装 npm i pinia-plugin-persistedstate
+  2.将插件添加到你的 pinia 实例中
+  import { createPinia } from 'pinia'
+  import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
+  const pinia = createPinia()
+  pinia.use(piniaPluginPersistedstate)
+  3.使用：在对应的库添加persist选项，设置为 true
+  <br>
+  import { createApp } from 'vue'
+  import App from './App.vue'
+  import { createPinia } from 'pinia'
+  // 导入持久化插件
+  import persist from 'pinia-plugin-persistedstate'
+  const pinia = createPinia() // 创建pinia实例
+  const app = createApp(App) // 创建根实例
+
+  app.use(pinia.use(persist)) // pinia插件的安装配置
+  app.mount('#app') // 视图的挂载
+  <br>
+  <script>
+    import { defineStore } from "pinia"
+    import { computed, ref } from "vue"
+    // 定义store
+    // defineStore(仓库的唯一标识, () => {})
+    export const useCounterStore = defineStore('counter', () => {
+      // 声明数据 state - count
+      const count = ref(100)
+      // 声明操作数据的方法 action (普通函数)
+      const addCount = () => count.value++
+      const subCount = () => count.value--
+      // 声明基于数据派生的计算属性 getters (computed)
+      const double = computed(() => count.value * 2)
+      // 声明数据 state - msg
+      const msg = ref('hello pinia')
+
+      return {
+        count,
+        addCount,
+        subCount,
+        double,
+        msg
+      }
+    }, {
+      // persist: true //开启当前模块的持久化
+      persist: {
+        key: 'my-counter',  //修改本地存储的唯一标识
+        pick: ['count'] // 存储的是哪些数据
+      }
+    })
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  1.创建数据
+  （1）在src创建store里面创建counter.js
+  （2）配置counter.js; 导入defineStore和定义store
+  <script>
+    import { defineStore } from "pinia"
+    import { ref } from "vue"
+    // 定义store
+    // defineStore(仓库的唯一标识, () => {})
+    export const useCounterStore = defineStore('counter', () => {
+      // 声明数据 state - count
+      const count = ref(100)
+      // 声明操作数据的方法 action (普通函数)
+      const addCount = () => count.value++
+      const subCount = () => count.value--
+      // 声明基于数据派生的计算属性 getters (computed)
+      const double = computed(() => count.value * 2)
+      // 声明数据 state - msg
+      const msg = ref('hello pinia')
+      return {
+        count,
+        addCount,
+        subCount,
+        double,
+        msg
+      }
+    }) 
+  </script>
+
+  2.使用数据
+  （1）导入store中提供的数据方法名
+  （2）进行渲染数据
+  <script setup>
+    import Son1Com from './components/Son1Com.vue'
+    import Son2Com from './components/Son2Com.vue'
+    import { useCounterStore } from '@/store/counter'
+    const counterStore = useCounterStore()  // 不能直接解构，会丢失数据的响应式
+    console.log(counterStore)
+  </script>
+  <template>
+    <div>
+      <h3>App.vue根组件 - {{ counterStore.count }} - {{ counterStore.msg }} - {{ counterStore.double }}</h3>
+      <button @click="counterStore.addCount">+</button>
+    </div>
+  </template>
+</body>
+
+</html>

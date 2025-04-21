@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  action即支持同步也支持异步
+  1.安装axios yarn add axios
+  2.在store里面创建channel.js
+  <script>
+    import axios from "axios"
+    import { defineStore } from "pinia"
+    import { ref } from "vue"
+    export const useChannelStore = defineStore('channel', () => {
+      // 声明数据
+      const channelList = ref([])
+      // 声明操作数据的方法
+      const getList = async () => {
+        // 支持异步
+        const { data: { data } } = await axios.get('http://geek.itheima.net/v1_0/channels')
+        channelList.value = data.channels
+        console.log(data.channels)
+      }
+      // 声明getters相关
+      return {
+        channelList,
+        getList
+      }
+    })
+  </script>
+  3.在页面中导入使用
+  <script setup>
+    import { useChannelStore } from '@/store/channel'
+    const channelStore = useChannelStore()
+  </script>
+  <template>
+    <div>
+      <button @click="channelStore.getList">获取频道的数据</button>
+      <ul>
+        <li v-for="item in channelStore.channelList" :key="item.id">{{ item.name }}</li>
+      </ul>
+    </div>
+  </template>
+</body>
+
+</html>
